@@ -1,16 +1,21 @@
 @startuml
 'https://plantuml.com/class-diagram
-
-User o-- Meal
-User *-- UserPreference
+CommonUser o-- Meal
+CommonUser *-- UserPreference
 Meal *-- Macros
 Meal o-- Ingredient
 UserPreference *-- MacroRange
 MacroRange *-- Range
 UserPreference *-- Range
 
+interface User {
+    String getUsername()
+    String getPassword()
+    List<Meal> getMeals()
+    UserPreference getPreferences()
+}
 
-class User {
+class CommonUser implements User {
 - private String username
 - private String password
 - private List<Meal> meals
