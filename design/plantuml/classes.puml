@@ -3,7 +3,7 @@
 'https://plantuml.com/class-diagram
 CommonUser o-- Meal
 CommonUser *-- UserPreference
-Meal *-- Macros
+Meal *-- Nutrients
 Meal o-- Ingredient
 UserPreference *-- NutrientRange
 NutrientRange *-- Range
@@ -25,8 +25,7 @@ class CommonUser implements User {
 class Meal {
 - private MealType mealType
 - private String name
-- priavte int calories
-- private Macros macros
+- private Nutrients nutrients
 - private List<Ingredient> ingredients
 - private List<HealthPreference> healthPreferences
 - private List<DietPreference> dietPreferences
@@ -40,7 +39,8 @@ class UserPreference {
 - private List<CuisinePreference> cuisinePreferences
 }
 
-class Macros {
+class Nutrients {
+- private int calories
 - private int fat
 - private int protien
 - private int carbs
