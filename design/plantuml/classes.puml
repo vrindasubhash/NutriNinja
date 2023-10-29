@@ -5,9 +5,8 @@ CommonUser o-- Meal
 CommonUser *-- UserPreference
 Meal *-- Macros
 Meal o-- Ingredient
-UserPreference *-- MacroRange
-MacroRange *-- Range
-UserPreference *-- Range
+UserPreference *-- NutrientRange
+NutrientRange *-- Range
 
 interface User {
     String getUsername()
@@ -35,8 +34,7 @@ class Meal {
 }
 
 class UserPreference {
-- private Range calorieRange
-- private MacroRange macroRange
+- private NutrientRange nutrientRange
 - private List<HealthPreference> healthPreferences
 - private List<DietPreference> dietPreferences
 - private List<CuisinePreference> cuisinePreferences
@@ -48,7 +46,8 @@ class Macros {
 - private int carbs
 }
 
-class MacroRange {
+class NutrientRange {
+- private Range calorieRange
 - private Range fatRange
 - private Range proteinRange
 - private Range carbRange
@@ -57,7 +56,7 @@ class MacroRange {
 class Ingredient {
 - private String name
 - private int amount
-- private String units
+- private String unit
 }
 
 class Range {
