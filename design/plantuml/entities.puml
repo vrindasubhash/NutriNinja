@@ -63,18 +63,4 @@ class Range {
     private int lowerBound
     private int upperBound
 }
-
-enum MealType {
-BREAKFAST
-LUNCH
-DINNER
-}
-
-enum HealthPreference {}
-
-enum DietPreference {}
-
-enum CuisinePreference{}
-
-
 @enduml
