@@ -4,7 +4,7 @@
 autonumber
 
 autonumber 1
-GenerateMealsController -> GenerateMealsInteractor: execute()
+GenerateMealsController -> GenerateMealsInteractor: execute(UserPreference userPreference)
 
 autonumber 2.1
 GenerateMealsInteractor -> GenerateMealsEntities: setName(String name)
