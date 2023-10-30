@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+autonumber 1
+GenerateMealsController -> GenerateMealsInteractor: execute()
+
+autonumber 2.1
+GenerateMealsInteractor -> GenerateMealsEntities: setName(String name)
+GenerateMealsInteractor -> GenerateMealsEntities: setNutrition(Nutrition nutrition)
+GenerateMealsInteractor -> GenerateMealsEntities: setIngredient(List<Ingredient> ingredient)
+GenerateMealsInteractor -> GenerateMealsEntities: setReceipe(String [] receipe)
+GenerateMealsInteractor -> GenerateMealsEntities: getMeal(Meal meal)
+GenerateMealsInteractor <-- GenerateMealsEntities: returns the meal class from entities
+GenerateMealsInteractor -> GenerateMealsOutputData: output(Meal meal)
+
+autonumber 3.1
+GenerateMealsInteractor -> GenerateMealsOutputBoundary: prepareFailView()
+
+
+@enduml
