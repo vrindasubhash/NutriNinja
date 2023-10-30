@@ -3,19 +3,19 @@
 
 autonumber
 
-autonumber 1
-GenerateMealsController -> GenerateMealsInteractor: execute(UserPreference userPreference)
+autonumber 1.1
+GenerateMealsController -> GenerateMealsInputData: generateMealsInputData(UserPreference userInputData)
+GenerateMealsController -> GenerateMealsInteractor: execute(UserPreference userInputData)
 
 autonumber 2.1
-GenerateMealsInteractor -> GenerateMealsEntities: setName(String name)
-GenerateMealsInteractor -> GenerateMealsEntities: setNutrition(Nutrition nutrition)
-GenerateMealsInteractor -> GenerateMealsEntities: setIngredient(List<Ingredient> ingredient)
-GenerateMealsInteractor -> GenerateMealsEntities: setReceipe(String [] receipe)
-GenerateMealsInteractor -> GenerateMealsEntities: getMeal(Meal meal)
-GenerateMealsInteractor <-- GenerateMealsEntities: returns the meal class from entities
+GenerateMealsInteractor -> GenerateMealsInputData: getHealthPreferences()
+GenerateMealsInteractor -> GenerateMealsInputData: getDietPreferences()
+GenerateMealsInteractor -> GenerateMealsInputData: getCuisinePreferences()
+
+autonumber 3
 GenerateMealsInteractor -> GenerateMealsOutputData: output(Meal meal)
 
-autonumber 3.1
+autonumber 4
 GenerateMealsInteractor -> GenerateMealsOutputBoundary: prepareFailView()
 
 
