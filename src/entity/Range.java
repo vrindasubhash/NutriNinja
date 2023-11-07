@@ -24,4 +24,9 @@ public class Range {
     public void setUpperBound(int upperBound) {
         this.upperBound = upperBound;
     }
+
+    // Ranges are inclusive of both bounds.
+    public String getRange(int lowerBound, int upperBound){
+        return lowerBound + "-" + upperBound;
+    }
 }
