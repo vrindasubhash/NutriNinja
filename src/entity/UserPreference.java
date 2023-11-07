@@ -4,16 +4,14 @@ import java.util.List;
 
 public class UserPreference {
     private NutrientRange nutrientRange;
-    private List<HealthPreference> healthPreferences;
-    private List<DietPreference> dietPreference;
-    private List<CuisinePreference> cuisinePreference;
+    private List<String> health;
+    private List<String> dishType;
 
 
-    public UserPreference(NutrientRange nutrientRange, List<HealthPreference> healthPreferences, List<DietPreference> dietPreference, List<CuisinePreference> cuisinePreference) {
+    public UserPreference(NutrientRange nutrientRange, List<String> health, List<String> dietPreference, List<String> cuisinePreference) {
         this.nutrientRange = nutrientRange;
-        this.healthPreferences = healthPreferences;
-        this.dietPreference = dietPreference;
-        this.cuisinePreference = cuisinePreference;
+        this.health = health;
+        this.dishType = dietPreference;
     }
 
     public NutrientRange getNutrientRange() {
@@ -24,27 +22,20 @@ public class UserPreference {
         this.nutrientRange = nutrientRange;
     }
 
-    public List<HealthPreference> getHealthPreferences() {
-        return healthPreferences;
+    public List<String> getHealth() {
+        return health;
     }
 
-    public void setHealthPreferences(List<HealthPreference> healthPreferences) {
-        this.healthPreferences = healthPreferences;
+    public void setHealth(List<String> health) {
+        this.health = health;
     }
 
-    public List<DietPreference> getDietPreference() {
-        return dietPreference;
+    public List<String> getDishType() {
+        return dishType;
     }
 
-    public void setDietPreference(List<DietPreference> dietPreference) {
-        this.dietPreference = dietPreference;
+    public void setDishType(List<String> dishType) {
+        this.dishType = dishType;
     }
 
-    public List<CuisinePreference> getCuisinePreference() {
-        return cuisinePreference;
-    }
-
-    public void setCuisinePreference(List<CuisinePreference> cuisinePreference) {
-        this.cuisinePreference = cuisinePreference;
-    }
 }
