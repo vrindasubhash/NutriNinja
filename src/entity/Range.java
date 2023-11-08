@@ -26,7 +26,7 @@ public class Range {
     }
 
     // Ranges are inclusive of both bounds.
-    public String getRange(int lowerBound, int upperBound){
+    public String getRangeString(){
         return lowerBound + "-" + upperBound;
     }
 }
