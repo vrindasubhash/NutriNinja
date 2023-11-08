@@ -10,9 +10,8 @@ public class SaveController{
         this.saveUseCaseInteractor = saveUseCaseInteractor;
     }
     public void execute(NutrientRange nutrientRange, String healthPreferences,
-                        String dietPreference,
-                        String cuisinePreference) {
-        SaveInputData saveInputData = new SaveInputData(nutrientRange, healthPreferences, dietPreference, cuisinePreference);
+                        String dishType) {
+        SaveInputData saveInputData = new SaveInputData(nutrientRange, healthPreferences, dishType);
         saveUseCaseInteractor.execute(saveInputData);
     }
 }
