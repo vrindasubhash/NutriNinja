@@ -4,14 +4,14 @@ import java.util.List;
 
 public class UserPreference {
     private NutrientRange nutrientRange;
-    private List<String> health;
+    private List<String> healthPreferences;
     private List<String> dishType;
 
 
-    public UserPreference(NutrientRange nutrientRange, List<String> health, List<String> dietPreference, List<String> cuisinePreference) {
+    public UserPreference(NutrientRange nutrientRange, List<String> health, List<String> dishType) {
         this.nutrientRange = nutrientRange;
-        this.health = health;
-        this.dishType = dietPreference;
+        this.healthPreferences = health;
+        this.dishType = dishType;
     }
 
     public NutrientRange getNutrientRange() {
@@ -22,12 +22,12 @@ public class UserPreference {
         this.nutrientRange = nutrientRange;
     }
 
-    public List<String> getHealth() {
-        return health;
+    public List<String> getHealthPreferences() {
+        return healthPreferences;
     }
 
-    public void setHealth(List<String> health) {
-        this.health = health;
+    public void setHealthPreferences(List<String> healthPreferences) {
+        this.healthPreferences = healthPreferences;
     }
 
     public List<String> getDishType() {
