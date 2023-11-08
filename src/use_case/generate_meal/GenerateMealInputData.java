@@ -8,32 +8,32 @@ public class GenerateMealInputData {
 
 
 
-    private List<String> health;
+    private List<String> healthPreferences;
     private List<String> mealType;
     private List<String> dishType;
     private Range calRange;
     private Range carbRange;
-    private Range protRange;
+    private Range proteinRange;
     private Range fatRange;
 
-    public GenerateMealInputData(List<String> health,
+    public GenerateMealInputData(List<String> healthPreferences,
                                  List<String> mealType,
                                  List<String> dishType,
                                  Range calRange,
                                  Range carbRange,
-                                 Range protRange,
+                                 Range proteinRange,
                                  Range fatRange ){
-        this.health = health;
+        this.healthPreferences = healthPreferences;
         this.mealType = mealType;
         this.dishType = dishType;
         this.calRange = calRange;
         this.carbRange = carbRange;
-        this.protRange = protRange;
+        this.proteinRange = proteinRange;
         this.fatRange = fatRange;
     }
 
-    public List<String> getHealth() {
-        return health;
+    public List<String> getHealthPreferences() {
+        return healthPreferences;
     }
 
     public List<String> getMealType() {
@@ -52,8 +52,8 @@ public class GenerateMealInputData {
         return carbRange;
     }
 
-    public Range getProtRange() {
-        return protRange;
+    public Range getProteinRange() {
+        return proteinRange;
     }
 
     public Range getFatRange() {
