@@ -1,4 +1,4 @@
-package entity;
+package app.custom_data;
 
 public class Range {
     private int lowerBound;
@@ -23,5 +23,10 @@ public class Range {
 
     public void setUpperBound(int upperBound) {
         this.upperBound = upperBound;
+    }
+
+    // Ranges are inclusive of both bounds.
+    public String getRangeString(){
+        return lowerBound + "-" + upperBound;
     }
 }
