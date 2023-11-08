@@ -1,4 +1,4 @@
-package entity;
+package app.custom_data;
 
 public class Range {
     private int lowerBound;

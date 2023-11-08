@@ -1,5 +1,7 @@
 package entity;
 
+import app.custom_data.Range;
+
 public class NutrientRange {
     private Range calorieRange;
     private Range fatRange;
