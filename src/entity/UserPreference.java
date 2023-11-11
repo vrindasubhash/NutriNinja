@@ -4,16 +4,14 @@ import java.util.List;
 
 public class UserPreference {
     private NutrientRange nutrientRange;
-    private List<HealthPreference> healthPreferences;
-    private List<DietPreference> dietPreference;
-    private List<CuisinePreference> cuisinePreference;
+    private List<String> healthPreferences;
+    private List<String> dishType;
 
 
-    public UserPreference(NutrientRange nutrientRange, List<HealthPreference> healthPreferences, List<DietPreference> dietPreference, List<CuisinePreference> cuisinePreference) {
+    public UserPreference(NutrientRange nutrientRange, List<String> health, List<String> dishType) {
         this.nutrientRange = nutrientRange;
-        this.healthPreferences = healthPreferences;
-        this.dietPreference = dietPreference;
-        this.cuisinePreference = cuisinePreference;
+        this.healthPreferences = health;
+        this.dishType = dishType;
     }
 
     public NutrientRange getNutrientRange() {
@@ -24,27 +22,20 @@ public class UserPreference {
         this.nutrientRange = nutrientRange;
     }
 
-    public List<HealthPreference> getHealthPreferences() {
+    public List<String> getHealthPreferences() {
         return healthPreferences;
     }
 
-    public void setHealthPreferences(List<HealthPreference> healthPreferences) {
+    public void setHealthPreferences(List<String> healthPreferences) {
         this.healthPreferences = healthPreferences;
     }
 
-    public List<DietPreference> getDietPreference() {
-        return dietPreference;
+    public List<String> getDishType() {
+        return dishType;
     }
 
-    public void setDietPreference(List<DietPreference> dietPreference) {
-        this.dietPreference = dietPreference;
+    public void setDishType(List<String> dishType) {
+        this.dishType = dishType;
     }
 
-    public List<CuisinePreference> getCuisinePreference() {
-        return cuisinePreference;
-    }
-
-    public void setCuisinePreference(List<CuisinePreference> cuisinePreference) {
-        this.cuisinePreference = cuisinePreference;
-    }
 }
