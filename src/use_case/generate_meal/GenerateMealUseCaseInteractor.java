@@ -2,15 +2,19 @@ package use_case.generate_meal;
 
 import app.custom_data.Range;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
@@ -51,16 +55,18 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
         try {
             Response response = client.newCall(request).execute();
             System.out.println(response);
-            System.out.println(response.body().string());
-            Gson responseBody = new Gson();
 
 
-//            if (responseBody.getInt("status_code") == 200) {
-//                JSONObject grade = responseBody.getJSONObject("grade");
-//
-//            } else {
-//                throw new RuntimeException(responseBody.getString("message"));
-//            }
+            if (response.code() == 200) {
+                Gson responseBody = new Gson();
+                ResponseBody body = response.body();
+                String content = body.string();
+                GenerateMealOutputData outputData = responseBody.fromJson(content, GenerateMealOutputData.class);
+                System.out.println(outputData.getHits()[0].getRecipe().getTotalNutrients().getProtein().getQuantity());
+
+            } else {
+                System.out.println("error");
+            }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
