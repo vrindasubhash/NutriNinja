@@ -1,23 +1,26 @@
 package use_case.generate_meal;
 
-import app.custom_data.Range;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
+
+    final GenerateMealOutputBoundary generateMealPresenter;
+    final GenerateMealDataAccessInterface generateMealDataAcessObject;
+    public GenerateMealUseCaseInteractor (GenerateMealOutputBoundary generateMealsOutputBoundary,
+                                          GenerateMealDataAccessInterface generateMealDataAcessInterface){
+        this.generateMealPresenter = generateMealsOutputBoundary;
+        this.generateMealDataAcessObject = generateMealDataAcessInterface;
+    }
+
+
     private String convertArrtoStringURL(String urlName, List<String> arr){
         String result = "";
         for (String s : arr){
@@ -54,39 +57,23 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            System.out.println(response);
 
 
             if (response.code() == 200) {
                 Gson responseBody = new Gson();
                 ResponseBody body = response.body();
-                String content = body.string();
+                String content = body.string(); //Needed to be called only once, or else responseBody.fromJson will not work
                 GenerateMealOutputData outputData = responseBody.fromJson(content, GenerateMealOutputData.class);
-                System.out.println(outputData.getHits()[0].getRecipe().getTotalNutrients().getProtein().getQuantity());
+
+                generateMealPresenter.prepareSuccessView(outputData);
 
             } else {
-                System.out.println("error");
+                generateMealPresenter.prepareFailView("Error");
             }
-
+            generateMealDataAcessObject.save();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-        public static void main(String[] args) throws URISyntaxException, UnsupportedEncodingException {
-        List<String> a1 = new ArrayList<>();
-        a1.add("vegan");
-        a1.add("vegetarian");
-
-        List<String> a2 = new ArrayList<>();
-        a2.add("lunch");
-
-        List<String> a3 = new ArrayList<>();
-        a3.add("Main Course");
-
-        GenerateMealUseCaseInteractor test = new GenerateMealUseCaseInteractor();
-        test.execute(new GenerateMealInputData(a1, a2, a3, new Range(100, 101), new Range(0, 100), new Range(0, 30), new Range(0,20)));
-
     }
 
 }
