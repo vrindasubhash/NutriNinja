@@ -7,14 +7,13 @@ import app.custom_data.Range;
 public class GenerateMealInputData {
 
 
-
-    private List<String> healthPreferences;
-    private List<String> mealType;
-    private List<String> dishType;
-    private Range calRange;
-    private Range carbRange;
-    private Range proteinRange;
-    private Range fatRange;
+    private final List<String> healthPreferences;
+    private final List<String> mealType;
+    private final List<String> dishType;
+    private final Range calRange;
+    private final Range carbRange;
+    private final Range proteinRange;
+    private final Range fatRange;
 
     public GenerateMealInputData(List<String> healthPreferences,
                                  List<String> mealType,
@@ -44,20 +43,20 @@ public class GenerateMealInputData {
         return dishType;
     }
 
-    public Range getCalRange() {
-        return calRange;
+    public String getCalRange() {
+        return calRange.getRangeString();
     }
 
-    public Range getCarbRange() {
-        return carbRange;
+    public String getCarbRange() {
+        return carbRange.getRangeString();
     }
 
-    public Range getProteinRange() {
-        return proteinRange;
+    public String getProteinRange() {
+        return proteinRange.getRangeString();
     }
 
-    public Range getFatRange() {
-        return fatRange;
+    public String getFatRange() {
+        return fatRange.getRangeString();
     }
 
 }
