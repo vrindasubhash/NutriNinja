@@ -20,19 +20,13 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
         this.generateMealDataAcessObject = generateMealDataAcessInterface;
     }
 
-
-    private String convertArrtoStringURL(String urlName, List<String> arr){
-        String result = "";
-        for (String s : arr){
-            result += urlName + s;
-        }
-        return result;
-    }
     public void execute(GenerateMealInputData inputData) {
         String ID = "8da598eb";
         String KEY = " 9fec3b1b7ba00da5dac76ba4af6bd26e\t";
         String URL = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + ID + "&app_key=" + KEY;
         String imageSizeURL = "&imageSize=REGULAR";
+
+        //fields to specify the data we want to get from the API
         List<String> fields = Arrays.asList("label", "image", "source", "url", "ingredientLines",
                 "calories", "totalTime", "totalNutrients");
 
@@ -68,12 +62,21 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
                 generateMealPresenter.prepareSuccessView(outputData);
 
             } else {
-                generateMealPresenter.prepareFailView("Error");
+                generateMealPresenter.prepareFailView("Error (Code " + response.code() + ").");
             }
             generateMealDataAcessObject.save();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            generateMealPresenter.prepareFailView(e.getMessage());
         }
+    }
+
+
+    private String convertArrtoStringURL(String urlName, List<String> arr){
+        String result = "";
+        for (String s : arr){
+            result += urlName + s;
+        }
+        return result;
     }
 
 }
