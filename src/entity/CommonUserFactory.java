@@ -2,6 +2,7 @@ package entity;
 
 import app.custom_data.Range;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommonUserFactory implements UserFactory{
@@ -14,6 +15,18 @@ public class CommonUserFactory implements UserFactory{
                 new Range(carbRange[0], carbRange[1])
         );
         UserPreference userPreference = new UserPreference(nutrientRange, healthPreference, dishType);
+        return new CommonUser(username, password, userPreference);
+    }
+
+    @Override
+    public User create(String username, String password) {
+        NutrientRange nutrientRange = new NutrientRange(
+                new Range(0, 0),
+                new Range(0, 0),
+                new Range(0, 0),
+                new Range(0, 0)
+                );
+        UserPreference userPreference = new UserPreference(nutrientRange, new ArrayList<>(), new ArrayList<>());
         return new CommonUser(username, password, userPreference);
     }
 }

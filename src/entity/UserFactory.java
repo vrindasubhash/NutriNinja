@@ -11,5 +11,8 @@ public interface UserFactory {
                 int[] calRange,
                 int[] fatRange,
                 int[] proteinRange,
-                int[] carbRange);
+                int[] carbRange
+    );
+
+    User create(String username, String password);
 }

@@ -95,6 +95,21 @@ public class FileUserDataAccessObject {
     }
 
     /**
+     * Creates a user and saves them to the database
+     * @param username represents the username of the new user
+     * @param password represents the password of the new user
+     */
+    public void createUser(String username, String password) {
+        User user = userFactory.create(username, password);
+        accounts.put(username, user);
+        try {
+            save();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
      * Returns true if the user exists and false otherwise
      * @param username identifies the user you want to check exists
      * @return a boolean representing if the user exists or not
