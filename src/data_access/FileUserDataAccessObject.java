@@ -9,7 +9,9 @@ import java.util.*;
 import entity.UserFactory;
 import entity.UserPreference;
 
-public class FileUserDataAccessObject {
+public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
+                                                 SignupDataAccessInterface,
+                                                 SavePreferencesDataAccessInterface {
     private final File csvFile;
     private final UserFactory userFactory;
     private final Map<String, Integer> headers = new LinkedHashMap<>();  // Mapping of column name to index in row array
