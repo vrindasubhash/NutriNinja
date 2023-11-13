@@ -1,4 +1,5 @@
 package interface_adapter.save_preferences;
+import java.util.List;
 
 import entity.NutrientRange;
 import use_case.save_preferences.SaveInputBoundary;
@@ -9,8 +10,8 @@ public class SaveController{
     public SaveController(SaveInputBoundary saveUseCaseInteractor) {
         this.saveUseCaseInteractor = saveUseCaseInteractor;
     }
-    public void execute(NutrientRange nutrientRange, String healthPreferences,
-                        String dishType) {
+    public void execute(NutrientRange nutrientRange, List<String> healthPreferences,
+                        List<String> dishType) {
         SaveInputData saveInputData = new SaveInputData(nutrientRange, healthPreferences, dishType);
         saveUseCaseInteractor.execute(saveInputData);
     }

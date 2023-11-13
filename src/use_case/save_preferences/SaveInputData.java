@@ -7,14 +7,14 @@ import java.util.List;
 public class SaveInputData {
 
     private final NutrientRange nutrientRange;
-    private final String healthPreference;
+    private final List<String> healthPreferences;
 
-    private final String dishType;
+    private final List<String> dishType;
 
 
-    public SaveInputData(NutrientRange nutrientRange, String healthPreference, String dishType) {
+    public SaveInputData(NutrientRange nutrientRange, List<String> healthPreferences, List<String> dishType) {
         this.nutrientRange = nutrientRange;
-        this.healthPreference = healthPreference;
+        this.healthPreferences = healthPreferences;
         this.dishType = dishType;
     }
 
@@ -22,11 +22,11 @@ public class SaveInputData {
         return this.nutrientRange;
     }
 
-    String getHealthPreferences(){
-        return this.healthPreference;
+    List<String> getHealthPreferences(){
+        return this.healthPreferences;
     }
 
-    String getDietPreference(){
+    List<String> getDietPreference(){
         return this.dishType;
     }
 
