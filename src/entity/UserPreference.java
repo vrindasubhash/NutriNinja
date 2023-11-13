@@ -8,9 +8,9 @@ public class UserPreference {
     private List<String> dishType;
 
 
-    public UserPreference(NutrientRange nutrientRange, List<String> health, List<String> dishType) {
+    public UserPreference(NutrientRange nutrientRange, List<String> healthPreferences, List<String> dishType) {
         this.nutrientRange = nutrientRange;
-        this.healthPreferences = health;
+        this.healthPreferences = healthPreferences;
         this.dishType = dishType;
     }
 
