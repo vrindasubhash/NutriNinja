@@ -13,11 +13,10 @@ import java.util.List;
 public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
 
     final GenerateMealOutputBoundary generateMealPresenter;
-    final GenerateMealDataAccessInterface generateMealDataAcessObject;
-    public GenerateMealUseCaseInteractor (GenerateMealOutputBoundary generateMealsOutputBoundary,
-                                          GenerateMealDataAccessInterface generateMealDataAcessInterface){
+
+    public GenerateMealUseCaseInteractor (GenerateMealOutputBoundary generateMealsOutputBoundary){
         this.generateMealPresenter = generateMealsOutputBoundary;
-        this.generateMealDataAcessObject = generateMealDataAcessInterface;
+
     }
 
     public void execute(GenerateMealInputData inputData) {
@@ -64,7 +63,6 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
             } else {
                 generateMealPresenter.prepareFailView("Error (Code " + response.code() + ").");
             }
-            generateMealDataAcessObject.save();
         } catch (IOException e) {
             generateMealPresenter.prepareFailView(e.getMessage());
         }

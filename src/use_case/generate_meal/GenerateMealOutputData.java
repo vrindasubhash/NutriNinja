@@ -7,14 +7,14 @@ public class GenerateMealOutputData {
     public Object count;
     public Object _links;
 
-    public Hits[] hits;
+    public Meals[] meals;
 
-    public Hits[] getHits() {
-        return hits;
+    public Meals[] getMeals() {
+        return meals;
     }
 
 
-    public class Hits{
+    public class Meals{
         public Recipe recipe;
         public Recipe getRecipe() {
             return recipe;
