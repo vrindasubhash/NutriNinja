@@ -20,9 +20,8 @@ class CommonUser implements User {
 
 class UserPreference {
 - private NutrientRange nutrientRange
-- private List<HealthPreference> healthPreferences
-- private List<DietPreference> dietPreferences
-- private List<CuisinePreference> cuisinePreferences
+- private List<String> healthPreferences
+- private List<String> dishType
 }
 
 class NutrientRange {
