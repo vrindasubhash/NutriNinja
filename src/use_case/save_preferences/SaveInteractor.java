@@ -12,7 +12,7 @@ package use_case.save_preferences;
 
     @Override
     public void execute(SaveInputData saveInputData) {
-        saveDataAccessObject.savePreferences();
+        saveDataAccessObject.save();
         SaveOutputData saveOutputData = new SaveOutputData();
         savePresenter.prepareSuccessView(saveOutputData);
     }
