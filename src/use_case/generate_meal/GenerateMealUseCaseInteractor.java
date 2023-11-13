@@ -51,7 +51,6 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
         try {
             Response response = client.newCall(request).execute();
 
-
             if (response.code() == 200) {
                 Gson responseBody = new Gson();
                 ResponseBody body = response.body();
