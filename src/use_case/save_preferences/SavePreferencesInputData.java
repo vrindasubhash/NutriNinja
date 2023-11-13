@@ -4,7 +4,7 @@ import entity.NutrientRange;
 
 import java.util.List;
 
-public class SaveInputData {
+public class SavePreferencesInputData {
 
     private final NutrientRange nutrientRange;
     private final List<String> healthPreferences;
@@ -12,7 +12,7 @@ public class SaveInputData {
     private final List<String> dishType;
 
 
-    public SaveInputData(NutrientRange nutrientRange, List<String> healthPreferences, List<String> dishType) {
+    public SavePreferencesInputData(NutrientRange nutrientRange, List<String> healthPreferences, List<String> dishType) {
         this.nutrientRange = nutrientRange;
         this.healthPreferences = healthPreferences;
         this.dishType = dishType;
