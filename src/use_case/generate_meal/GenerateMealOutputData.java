@@ -23,18 +23,18 @@ public class GenerateMealOutputData {
     }
 
     public class Recipe{
-        public Object getLabel() {
-            return label;
-        }
 
-        private String label;
-        private String image;
+        private String label; //Recipe name
+        private String image; //Image URL
         private String source; //Source name
         private String url; //Source URL
 
         private double calories;
         private double totalTime;
 
+        public String getLabel(){
+            return label;
+        }
         public String getImage() {
             return image;
         }
