@@ -25,6 +25,17 @@ public class MemoryUserDataAccessObject implements LoginUserDataAccessInterface,
     }
 
     /**
+     * Saves user preferences to database
+     * @param username represents the username of the user to save to
+     * @param preference represents the new preference
+     */
+    @Override
+    public void saveUserPreference(String username, UserPreference preference) {
+        User user = accounts.get(username);
+        user.setPreferences(preference);
+    }
+
+    /**
      * Returns true if the user exists and false otherwise
      * @param username identifies the user you want to check exists
      * @return a boolean representing if the user exists or not
