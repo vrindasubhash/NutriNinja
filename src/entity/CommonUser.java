@@ -3,12 +3,12 @@ package entity;
 public class CommonUser implements User {
     private String username;
     private String password;
-    private UserPreference userPreference;
+    private UserPreferences userPreferences;
 
-    public CommonUser(String username, String password, UserPreference userPreference) {
+    public CommonUser(String username, String password, UserPreferences userPreferences) {
         this.username = username;
         this.password = password;
-        this.userPreference = userPreference;
+        this.userPreferences = userPreferences;
     }
 
     @Override
@@ -22,8 +22,8 @@ public class CommonUser implements User {
     }
 
     @Override
-    public UserPreference getPreferences() {
-        return userPreference;
+    public UserPreferences getUserPreferences() {
+        return userPreferences;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class CommonUser implements User {
     }
 
     @Override
-    public void setPreferences(UserPreference userPreference) {
-        this.userPreference = userPreference;
+    public void setUserPreferences(UserPreferences userPreferences) {
+        this.userPreferences = userPreferences;
     }
 }

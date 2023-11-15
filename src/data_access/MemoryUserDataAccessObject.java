@@ -1,12 +1,8 @@
 package data_access;
 
-import entity.NutrientRange;
 import entity.User;
-import entity.UserPreference;
+import entity.UserPreferences;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,12 +23,12 @@ public class MemoryUserDataAccessObject implements LoginUserDataAccessInterface,
     /**
      * Saves user preferences to database
      * @param username represents the username of the user to save to
-     * @param preference represents the new preference
+     * @param preferences represents the new preferences
      */
     @Override
-    public void saveUserPreference(String username, UserPreference preference) {
+    public void saveUserPreferences(String username, UserPreferences preferences) {
         User user = accounts.get(username);
-        user.setPreferences(preference);
+        user.setUserPreferences(preferences);
     }
 
     /**

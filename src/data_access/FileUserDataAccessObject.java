@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 
 import entity.UserFactory;
-import entity.UserPreference;
+import entity.UserPreferences;
 
 public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
                                                  SignupDataAccessInterface,
@@ -56,7 +56,8 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
                             dishType, calRange,
                             fatRange,
                             proteinRange,
-                            carbRange);
+                            carbRange
+                    );
                     accounts.put(username, user);
                 }
             }
@@ -74,7 +75,7 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
 
             // Writing users to file
             for (User user : accounts.values()) {
-                UserPreference userPreference = user.getPreferences();
+                UserPreferences userPreference = user.getUserPreferences();
                 NutrientRange nutrientRange = userPreference.getNutrientRange();
 
                 String line = String.format(
@@ -109,12 +110,12 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
     /**
      * Saves user preferences to database
      * @param username represents the username of the user to save to
-     * @param preference represents the new preference
+     * @param preferences represents the new preferences
      */
     @Override
-    public void saveUserPreference(String username, UserPreference preference) {
+    public void saveUserPreferences(String username, UserPreferences preferences) {
         User user = accounts.get(username);
-        user.setPreferences(preference);
+        user.setUserPreferences(preferences);
         save();
     }
 
