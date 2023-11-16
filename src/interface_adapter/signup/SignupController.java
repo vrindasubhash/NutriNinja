@@ -1,7 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
 
 package interface_adapter.signup;
 
@@ -15,8 +11,8 @@ public class SignupController {
         this.userSignupUseCaseInteractor = userSignupUseCaseInteractor;
     }
 
-    public void execute(String username, String password1, String password2) {
-        SignupInputData signupInputData = new SignupInputData(username, password1, password2);
+    public void execute(String username, String password, String repeatPassword) {
+        SignupInputData signupInputData = new SignupInputData(username, password, repeatPassword);
         this.userSignupUseCaseInteractor.execute(signupInputData);
     }
 }
