@@ -123,6 +123,15 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
 
     /**
      * Returns true if the user exists and false otherwise
+     * @param identifier identifies the user you want to check exists
+     * @return a boolean representing if the user exists or not
+     */
+    boolean existsByName(String identifier) {
+        return this.userExists(identifier);
+    }
+
+    /**
+     * Returns true if the user exists and false otherwise
      * @param username identifies the user you want to check exists
      * @return a boolean representing if the user exists or not
      */
