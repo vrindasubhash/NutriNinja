@@ -8,6 +8,7 @@ import java.util.*;
 
 import entity.UserFactory;
 import entity.UserPreference;
+import use_case.login.LoginUserDataAccessInterface;
 
 public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
                                                  SignupDataAccessInterface,
