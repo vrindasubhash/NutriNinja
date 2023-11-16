@@ -49,7 +49,8 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
                 .addHeader("Accept-Language", "en")
                 .build();
         try {
-            Response response = client.newCall(request).execute();
+            // TODO pass in a LoginInputData object to execute
+            Response response = client.newCall(request).execute(null);
 
             if (response.code() == 200) {
                 Gson responseBody = new Gson();
