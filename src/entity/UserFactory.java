@@ -1,8 +1,18 @@
 package entity;
 
-import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 public interface UserFactory {
-    /** Requires: password is valid. */
-    User create(String username, String password, UserPreference preference);
+    User create(String username,
+                String password,
+                List<String> healthPreference,
+                List<String> dishType,
+                int[] calRange,
+                int[] fatRange,
+                int[] proteinRange,
+                int[] carbRange
+    );
+
+    User create(String username, String password);
 }
