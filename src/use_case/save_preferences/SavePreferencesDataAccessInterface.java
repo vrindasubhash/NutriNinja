@@ -1,7 +1,7 @@
 package use_case.save_preferences;
 
-import entity.UserPreference;
+import entity.UserPreferences;
 
 public interface SavePreferencesDataAccessInterface {
-    void saveUserPreference(String username, UserPreference preference);
+    void saveUserPreferences(String username, UserPreferences preferences);
 }

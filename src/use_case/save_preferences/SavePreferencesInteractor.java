@@ -1,5 +1,8 @@
 package use_case.save_preferences;
-    public class SavePreferencesInteractor implements SavePreferencesInputBoundary {
+
+import entity.UserPreferences;
+
+public class SavePreferencesInteractor implements SavePreferencesInputBoundary {
         final SavePreferencesDataAccessInterface saveDataAccessObject;
         final SavePreferencesOutputBoundary savePresenter;
 
@@ -12,7 +15,10 @@ package use_case.save_preferences;
 
     @Override
     public void execute(SavePreferencesInputData savePreferencesInputData) {
-        saveDataAccessObject.save();
+        UserPreferences userPreferences = new UserPreferences(savePreferencesInputData.getNutrientRange(),
+                savePreferencesInputData.getHealthPreferences(),
+                savePreferencesInputData.getDietPreference());
+        saveDataAccessObject.saveUserPreferences(savePreferencesInputData.getUsername(), userPreferences);
         SavePreferencesOutputData savePreferencesOutputData = new SavePreferencesOutputData();
         savePresenter.prepareSuccessView(savePreferencesOutputData);
     }

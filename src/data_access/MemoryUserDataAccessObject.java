@@ -2,13 +2,14 @@ package data_access;
 
 import entity.User;
 import entity.UserPreferences;
+import use_case.save_preferences.SavePreferencesDataAccessInterface;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MemoryUserDataAccessObject implements LoginUserDataAccessInterface,
                                                    SignupDataAccessInterface,
-                                                   SavePreferencesDataAccessInterface {
+        SavePreferencesDataAccessInterface {
     private final Map<String, User> accounts = new HashMap<>();
 
     /**

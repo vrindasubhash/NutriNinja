@@ -11,11 +11,14 @@ public class SavePreferencesInputData {
 
     private final List<String> dishType;
 
+    private final String username;
 
-    public SavePreferencesInputData(NutrientRange nutrientRange, List<String> healthPreferences, List<String> dishType) {
+
+    public SavePreferencesInputData(NutrientRange nutrientRange, List<String> healthPreferences, List<String> dishType, String username) {
         this.nutrientRange = nutrientRange;
         this.healthPreferences = healthPreferences;
         this.dishType = dishType;
+        this.username = username;
     }
 
     NutrientRange getNutrientRange() {
@@ -29,5 +32,7 @@ public class SavePreferencesInputData {
     List<String> getDietPreference(){
         return this.dishType;
     }
+
+    String getUsername(){return this.username;}
 
 }
