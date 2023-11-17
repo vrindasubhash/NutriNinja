@@ -2,6 +2,7 @@ package data_access;
 
 import entity.User;
 import entity.UserPreferences;
+import use_case.login.LoginUserDataAccessInterface;
 import use_case.save_preferences.SavePreferencesDataAccessInterface;
 import use_case.signup.SignupDataAccessInterface;
 
