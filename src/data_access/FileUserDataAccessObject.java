@@ -7,19 +7,17 @@ import java.io.*;
 import java.util.*;
 
 import entity.UserFactory;
-import entity.UserPreference;
+import entity.UserPreferences;
 
 public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
                                                  SignupDataAccessInterface,
                                                  SavePreferencesDataAccessInterface {
     private final File csvFile;
-    private final UserFactory userFactory;
     private final Map<String, Integer> headers = new LinkedHashMap<>();  // Mapping of column name to index in row array
     private final Map<String, User> accounts = new HashMap<>();  // Mapping of username to user object
 
     public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
         csvFile = new File(csvPath);
-        this.userFactory = userFactory;
 
         headers.put("username", 0);
         headers.put("password", 1);
@@ -58,7 +56,8 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
                             dishType, calRange,
                             fatRange,
                             proteinRange,
-                            carbRange);
+                            carbRange
+                    );
                     accounts.put(username, user);
                 }
             }
@@ -68,7 +67,7 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
     /**
      * Saves all the users stored in memory
      */
-    public void save() throws IOException {
+    public void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile))) {
             // Writing headers to file
             writer.write(String.join(",", headers.keySet()));
@@ -76,7 +75,7 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
 
             // Writing users to file
             for (User user : accounts.values()) {
-                UserPreference userPreference = user.getPreferences();
+                UserPreferences userPreference = user.getUserPreferences();
                 NutrientRange nutrientRange = userPreference.getNutrientRange();
 
                 String line = String.format(
@@ -93,22 +92,31 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
                 writer.write(line);
                 writer.newLine();
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
     /**
-     * Creates a user and saves them to the database
-     * @param username represents the username of the new user
-     * @param password represents the password of the new user
+     * Saves user to database
+     * @param user represents the user to save
      */
-    public void createUser(String username, String password) {
-        User user = userFactory.create(username, password);
-        accounts.put(username, user);
-        try {
-            save();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    @Override
+    public void saveUser(User user) {
+        accounts.put(user.getUsername(), user);
+        save();
+    }
+
+    /**
+     * Saves user preferences to database
+     * @param username represents the username of the user to save to
+     * @param preferences represents the new preferences
+     */
+    @Override
+    public void saveUserPreferences(String username, UserPreferences preferences) {
+        User user = accounts.get(username);
+        user.setUserPreferences(preferences);
+        save();
     }
 
     /**
@@ -116,6 +124,7 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
      * @param username identifies the user you want to check exists
      * @return a boolean representing if the user exists or not
      */
+    @Override
     public boolean userExists(String username) {
         return accounts.containsKey(username);
     }
@@ -125,6 +134,7 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
      * @param username identifies the user
      * @return the user
      */
+    @Override
     public User getUser(String username) {
         return accounts.get(username);
     }

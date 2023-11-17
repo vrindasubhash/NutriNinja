@@ -14,8 +14,8 @@ public class CommonUserFactory implements UserFactory{
                 new Range(proteinRange[0], proteinRange[1]),
                 new Range(carbRange[0], carbRange[1])
         );
-        UserPreference userPreference = new UserPreference(nutrientRange, healthPreference, dishType);
-        return new CommonUser(username, password, userPreference);
+        UserPreferences userPreferences = new UserPreferences(nutrientRange, healthPreference, dishType);
+        return new CommonUser(username, password, userPreferences);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class CommonUserFactory implements UserFactory{
                 new Range(0, 0),
                 new Range(0, 0)
                 );
-        UserPreference userPreference = new UserPreference(nutrientRange, new ArrayList<>(), new ArrayList<>());
-        return new CommonUser(username, password, userPreference);
+        UserPreferences userPreferences = new UserPreferences(nutrientRange, new ArrayList<>(), new ArrayList<>());
+        return new CommonUser(username, password, userPreferences);
     }
 }

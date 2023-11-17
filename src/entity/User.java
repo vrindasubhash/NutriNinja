@@ -1,9 +1,11 @@
 package entity;
 
-import java.util.List;
-
 public interface User {
     String getUsername();
     String getPassword();
-    UserPreference getPreferences();
+    UserPreferences getUserPreferences();
+
+    void setUsername(String username);
+    void setPassword(String password);
+    void setUserPreferences(UserPreferences preferences);
 }
