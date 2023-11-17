@@ -1,16 +1,14 @@
 package entity;
 
-import java.util.List;
-
 public class CommonUser implements User {
     private String username;
     private String password;
-    private UserPreference userPreference;
+    private UserPreferences userPreferences;
 
-    public CommonUser(String username, String password, UserPreference userPreference) {
+    public CommonUser(String username, String password, UserPreferences userPreferences) {
         this.username = username;
         this.password = password;
-        this.userPreference = userPreference;
+        this.userPreferences = userPreferences;
     }
 
     @Override
@@ -24,7 +22,22 @@ public class CommonUser implements User {
     }
 
     @Override
-    public UserPreference getPreferences() {
-        return userPreference;
+    public UserPreferences getUserPreferences() {
+        return userPreferences;
+    }
+
+    @Override
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public void setUserPreferences(UserPreferences userPreferences) {
+        this.userPreferences = userPreferences;
     }
 }
