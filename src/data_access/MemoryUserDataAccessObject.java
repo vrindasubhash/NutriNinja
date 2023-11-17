@@ -3,7 +3,7 @@ package data_access;
 import entity.User;
 import entity.UserPreferences;
 import use_case.save_preferences.SavePreferencesDataAccessInterface;
-import use_case_signup.SignupDataAccessInterface;
+import use_case.signup.SignupDataAccessInterface;
 
 import java.util.HashMap;
 import java.util.Map;

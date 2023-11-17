@@ -1,5 +1,5 @@
 
-package use_case_signup;
+package use_case.signup;
 
 public interface SignupOutputBoundary {
     void prepareSuccessView(SignupOutputData successResponse);

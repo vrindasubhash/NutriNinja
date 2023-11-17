@@ -9,7 +9,7 @@ import java.util.*;
 import entity.UserFactory;
 import entity.UserPreferences;
 import use_case.save_preferences.SavePreferencesDataAccessInterface;
-import use_case_signup.SignupDataAccessInterface;
+import use_case.signup.SignupDataAccessInterface;
 
 public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
         SignupDataAccessInterface,
