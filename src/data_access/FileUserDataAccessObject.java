@@ -8,6 +8,7 @@ import java.util.*;
 
 import entity.UserFactory;
 import entity.UserPreferences;
+import use_case.login.LoginUserDataAccessInterface;
 import use_case.save_preferences.SavePreferencesDataAccessInterface;
 import use_case.signup.SignupDataAccessInterface;
 
