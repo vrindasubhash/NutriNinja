@@ -8,10 +8,11 @@ import java.util.*;
 
 import entity.UserFactory;
 import entity.UserPreferences;
+import use_case.save_preferences.SavePreferencesDataAccessInterface;
 
 public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
                                                  SignupDataAccessInterface,
-                                                 SavePreferencesDataAccessInterface {
+        SavePreferencesDataAccessInterface {
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();  // Mapping of column name to index in row array
     private final Map<String, User> accounts = new HashMap<>();  // Mapping of username to user object
