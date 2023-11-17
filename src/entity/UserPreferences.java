@@ -2,13 +2,13 @@ package entity;
 
 import java.util.List;
 
-public class UserPreference {
+public class UserPreferences {
     private NutrientRange nutrientRange;
     private List<String> healthPreferences;
     private List<String> dishType;
 
 
-    public UserPreference(NutrientRange nutrientRange, List<String> healthPreferences, List<String> dishType) {
+    public UserPreferences(NutrientRange nutrientRange, List<String> healthPreferences, List<String> dishType) {
         this.nutrientRange = nutrientRange;
         this.healthPreferences = healthPreferences;
         this.dishType = dishType;
