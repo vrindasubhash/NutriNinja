@@ -1,27 +1,27 @@
 package app.custom_data;
 
-public class Range {
-    private int lowerBound;
-    private int upperBound;
+public class Range <T extends Number> {
+    private T lowerBound;
+    private T upperBound;
 
-    public Range(int lowerBound, int upperBound) {
+    public Range(T lowerBound, T upperBound) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
     }
 
-    public int getLowerBound() {
+    public T getLowerBound() {
         return lowerBound;
     }
 
-    public void setLowerBound(int lowerBound) {
+    public void setLowerBound(T lowerBound) {
         this.lowerBound = lowerBound;
     }
 
-    public int getUpperBound() {
+    public T getUpperBound() {
         return upperBound;
     }
 
-    public void setUpperBound(int upperBound) {
+    public void setUpperBound(T upperBound) {
         this.upperBound = upperBound;
     }
 

@@ -10,18 +10,18 @@ public class GenerateMealInputData {
     private final List<String> healthPreferences;
     private final List<String> mealType;
     private final List<String> dishType;
-    private final Range calRange;
-    private final Range carbRange;
-    private final Range proteinRange;
-    private final Range fatRange;
+    private final Range<Integer> calRange;
+    private final Range<Integer> carbRange;
+    private final Range<Integer> proteinRange;
+    private final Range<Integer> fatRange;
 
     public GenerateMealInputData(List<String> healthPreferences,
                                  List<String> mealType,
                                  List<String> dishType,
-                                 Range calRange,
-                                 Range carbRange,
-                                 Range proteinRange,
-                                 Range fatRange ){
+                                 Range<Integer> calRange,
+                                 Range<Integer> carbRange,
+                                 Range<Integer> proteinRange,
+                                 Range<Integer> fatRange ){
         this.healthPreferences = healthPreferences;
         this.mealType = mealType;
         this.dishType = dishType;
