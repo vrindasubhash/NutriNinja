@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class RangeTest {
     private Range<Integer> range;
 
-    @BeforeEach
+    @Before
     public void init() throws Exception {
         range = new Range<>(6, 8);
     }
