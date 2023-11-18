@@ -14,10 +14,10 @@ public class GenerateMealController {
     }
 
     public void execute(List<String> healthPreferences, List<String> mealType, List<String> dishType, int calMin, int calMax, int carbMin, int carbMax, int proteinMin, int proteinMax, int fatMin, int fatMax){
-        Range calRange = new Range(calMin, calMax);
-        Range carbRange = new Range(carbMin, carbMax);
-        Range proteinRange = new Range(proteinMin, proteinMax);
-        Range fatRange = new Range(fatMin, fatMax);
+        Range<Integer> calRange = new Range<>(calMin, calMax);
+        Range<Integer> carbRange = new Range<>(carbMin, carbMax);
+        Range<Integer> proteinRange = new Range<>(proteinMin, proteinMax);
+        Range<Integer> fatRange = new Range<>(fatMin, fatMax);
         GenerateMealInputData generateMealInputData = new GenerateMealInputData(
                 healthPreferences,
                 mealType,

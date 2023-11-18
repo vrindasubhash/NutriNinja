@@ -3,12 +3,12 @@ package entity;
 import app.custom_data.Range;
 
 public class NutrientRange {
-    private Range calorieRange;
-    private Range fatRange;
-    private Range proteinRange;
-    private Range carbRange;
+    private Range<Integer> calorieRange;
+    private Range<Integer> fatRange;
+    private Range<Integer> proteinRange;
+    private Range<Integer> carbRange;
 
-    public NutrientRange(Range calorieRange, Range fatRange, Range proteinRange, Range carbRange) {
+    public NutrientRange(Range<Integer> calorieRange, Range<Integer> fatRange, Range<Integer> proteinRange, Range<Integer> carbRange) {
         this.calorieRange = calorieRange;
         this.fatRange = fatRange;
         this.proteinRange = proteinRange;
@@ -16,35 +16,35 @@ public class NutrientRange {
     }
 
 
-    public Range getCalorieRange() {
+    public Range<Integer> getCalorieRange() {
         return calorieRange;
     }
 
-    public void setCalorieRange(Range calorieRange) {
+    public void setCalorieRange(Range<Integer> calorieRange) {
         this.calorieRange = calorieRange;
     }
 
-    public Range getFatRange() {
+    public Range<Integer> getFatRange() {
         return fatRange;
     }
 
-    public void setFatRange(Range fatRange) {
+    public void setFatRange(Range<Integer> fatRange) {
         this.fatRange = fatRange;
     }
 
-    public Range getProteinRange() {
+    public Range<Integer> getProteinRange() {
         return proteinRange;
     }
 
-    public void setProteinRange(Range proteinRange) {
+    public void setProteinRange(Range<Integer> proteinRange) {
         this.proteinRange = proteinRange;
     }
 
-    public Range getCarbRange() {
+    public Range<Integer> getCarbRange() {
         return carbRange;
     }
 
-    public void setCarbRange(Range carbRange) {
+    public void setCarbRange(Range<Integer> carbRange) {
         this.carbRange = carbRange;
     }
 }
