@@ -36,7 +36,7 @@ public class SavePreferencesInputData {
         return this.healthPreferences;
     }
 
-    List<String> getDietPreference(){
+    List<String> getDishType(){
         return this.dishType;
     }
 
