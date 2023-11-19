@@ -1,5 +1,6 @@
 package use_case.save_preferences;
 
+import app.custom_data.Range;
 import entity.NutrientRange;
 
 import java.util.List;
@@ -14,8 +15,14 @@ public class SavePreferencesInputData {
     private final String username;
 
 
-    public SavePreferencesInputData(NutrientRange nutrientRange, List<String> healthPreferences, List<String> dishType, String username) {
-        this.nutrientRange = nutrientRange;
+    public SavePreferencesInputData(Range<Integer> calorieRange,
+                                    Range<Integer> fatRange,
+                                    Range<Integer> proteinRange,
+                                    Range<Integer> carbRange,
+                                    List<String> healthPreferences,
+                                    List<String> dishType,
+                                    String username) {
+        this.nutrientRange = new NutrientRange(calorieRange, fatRange, proteinRange, carbRange);
         this.healthPreferences = healthPreferences;
         this.dishType = dishType;
         this.username = username;
