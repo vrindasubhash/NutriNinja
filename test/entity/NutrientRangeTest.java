@@ -34,13 +34,7 @@ public class NutrientRangeTest {
     public void setCalorieRange() {
         Range<Integer> calRange = new Range<>(100, 200);
         nutrientRange.setCalorieRange(calRange);
-
-        int[] expectedValues = new int[]{100, 200};
-        int[] actualValues = new int[]{
-                nutrientRange.getCalorieRange().getLowerBound(),
-                nutrientRange.getCalorieRange().getUpperBound()
-        };
-        assertArrayEquals(expectedValues, actualValues);
+        assertEquals(calRange, nutrientRange.getCalorieRange());
     }
 
     @Test
@@ -57,13 +51,7 @@ public class NutrientRangeTest {
     public void setFatRange() {
         Range<Integer> fatRange = new Range<>(300, 400);
         nutrientRange.setFatRange(fatRange);
-
-        int[] expectedValues = new int[]{300, 400};
-        int[] actualValues = new int[]{
-                nutrientRange.getFatRange().getLowerBound(),
-                nutrientRange.getFatRange().getUpperBound()
-        };
-        assertArrayEquals(expectedValues, actualValues);
+        assertEquals(fatRange, nutrientRange.getFatRange());
     }
 
     @Test
@@ -80,13 +68,7 @@ public class NutrientRangeTest {
     public void setProteinRange() {
         Range<Integer> proteinRange = new Range<>(500, 600);
         nutrientRange.setProteinRange(proteinRange);
-
-        int[] expectedValues = new int[]{500, 600};
-        int[] actualValues = new int[]{
-                nutrientRange.getProteinRange().getLowerBound(),
-                nutrientRange.getProteinRange().getUpperBound()
-        };
-        assertArrayEquals(expectedValues, actualValues);
+        assertEquals(proteinRange, nutrientRange.getProteinRange());
     }
 
     @Test
@@ -103,12 +85,6 @@ public class NutrientRangeTest {
     public void setCarbRange() {
         Range<Integer> carbRange = new Range<>(700, 800);
         nutrientRange.setCarbRange(carbRange);
-
-        int[] expectedValues = new int[]{700, 800};
-        int[] actualValues = new int[]{
-                nutrientRange.getCarbRange().getLowerBound(),
-                nutrientRange.getCarbRange().getUpperBound()
-        };
-        assertArrayEquals(expectedValues, actualValues);
+        assertEquals(carbRange, nutrientRange.getCarbRange());
     }
 }
