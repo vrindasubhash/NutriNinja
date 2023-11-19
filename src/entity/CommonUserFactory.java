@@ -17,14 +17,14 @@ public class CommonUserFactory implements UserFactory{
         UserPreferences userPreferences = new UserPreferences(nutrientRange, healthPreference, dishType);
         return new CommonUser(username, password, userPreferences);
     }
-
+    
     @Override
     public User create(String username, String password) {
         NutrientRange nutrientRange = new NutrientRange(
-                new Range<>(0, 0),
-                new Range<>(0, 0),
-                new Range<>(0, 0),
-                new Range<>(0, 0)
+                new Range<>(0, 1000),
+                new Range<>(0, 100),
+                new Range<>(0, 150),
+                new Range<>(0, 500)
                 );
         UserPreferences userPreferences = new UserPreferences(nutrientRange, new ArrayList<>(), new ArrayList<>());
         return new CommonUser(username, password, userPreferences);
