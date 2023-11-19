@@ -21,7 +21,7 @@ public class CommonUserFactory implements UserFactory {
     @Override
     public User create(String username, String password) {
         NutrientRange nutrientRange = new NutrientRange(
-                new Range<>(0, 1000),
+                new Range<>(0, 2000),
                 new Range<>(0, 100),
                 new Range<>(0, 150),
                 new Range<>(0, 500)
