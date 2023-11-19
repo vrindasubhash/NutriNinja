@@ -27,7 +27,7 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
 
         //fields to specify the data we want to get from the API
         List<String> fields = Arrays.asList("label", "image", "source", "url", "ingredientLines",
-                "calories", "totalTime", "totalNutrients", "totalWeight");
+                "calories", "totalTime", "totalNutrients", "yield");
 
 
         String healthPreferencesURL = convertArrtoStringURL("&health=", inputData.getHealthPreferences());
@@ -38,7 +38,7 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
         String proteinRangeURL = "&nutrients%5PROCNT=" + inputData.getProteinRange(); //Protein
         String fatRangeURL = "&nutrients%5FAT=" + inputData.getFatRange(); //Fat
         String field = convertArrtoStringURL("&field=", fields);
-        String random  =  "&random=true";
+        String random = "&random=true";
 
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
