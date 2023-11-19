@@ -19,7 +19,7 @@ public class SavePreferencesInteractor implements SavePreferencesInputBoundary {
                 savePreferencesInputData.getHealthPreferences(),
                 savePreferencesInputData.getDietPreference());
         saveDataAccessObject.saveUserPreferences(savePreferencesInputData.getUsername(), userPreferences);
-        SavePreferencesOutputData savePreferencesOutputData = new SavePreferencesOutputData();
+        SavePreferencesOutputData savePreferencesOutputData = new SavePreferencesOutputData(userPreferences);
         savePresenter.prepareSuccessView(savePreferencesOutputData);
     }
 
