@@ -27,7 +27,7 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
 
         //fields to specify the data we want to get from the API
         List<String> fields = Arrays.asList("label", "image", "source", "url", "ingredientLines",
-                "calories", "totalTime", "totalNutrients", "yield");
+                "calories", "totalTime", "totalNutrients", "yield", "healthLabels", "mealType", "dishType");
 
 
         String healthPreferencesURL = convertArrtoStringURL("&health=", inputData.getHealthPreferences());
@@ -45,12 +45,14 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
 
         Request request = new Request.Builder()
                 .url(String.format("%s%s%s%s%s%s%s%s%s%s%s", URL, imageSizeURL, healthPreferencesURL, mealTypeURL,
-                        dishTypeURL, calRangeURL, carbRangeURL, proteinRangeURL, fatRangeURL, field,  random))
+                        dishTypeURL, calRangeURL, carbRangeURL, proteinRangeURL, fatRangeURL, field, random))
                 .addHeader("Accept", "application/json")
                 .addHeader("Accept-Language", "en")
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            System.out.println(response.code());
+
 
             if (response.code() == 200) {
                 Gson responseBody = new Gson();
@@ -58,9 +60,15 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
                 String content = body.string(); //Needed to be called only once, or else responseBody.fromJson will not work
                 GenerateMealOutputData outputData = responseBody.fromJson(content, GenerateMealOutputData.class);
 
-                generateMealPresenter.prepareSuccessView(outputData);
+                //No meals found
+                if (outputData.getMeals().length == 0)
+                    generateMealPresenter.prepareFailView("No meals found, please try again.");
+                else
+                    generateMealPresenter.prepareSuccessView(outputData);
+
 
             } else {
+
                 generateMealPresenter.prepareFailView("Error (Code " + response.code() + ").");
             }
         } catch (IOException e) {
