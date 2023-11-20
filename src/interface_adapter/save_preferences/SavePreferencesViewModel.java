@@ -1,6 +1,10 @@
 package interface_adapter.save_preferences;
 
-public class SavePreferencesViewModel extends ViewModel{
+import interface_adapter.ViewModel;
+
+import java.beans.PropertyChangeListener;
+
+public class SavePreferencesViewModel extends ViewModel {
 
     public final String TITLE_LABEL = "Preferences";
     public final String NUTRIENT_LABEL = "Enter Preferred Nutrient Values";
@@ -17,4 +21,13 @@ public class SavePreferencesViewModel extends ViewModel{
     }
 
 
+    @Override
+    public void firePropertyChanged() {
+
+    }
+
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+
+    }
 }
