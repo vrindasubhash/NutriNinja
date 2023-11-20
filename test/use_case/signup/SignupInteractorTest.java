@@ -5,7 +5,6 @@ package use_case.signup;
 import data_access.MemoryUserDataAccessObject;
 import entity.CommonUserFactory;
 import entity.User;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,6 +22,13 @@ public class SignupInteractorTest {
     public void setUp() {
         userRepository = new MemoryUserDataAccessObject();
         userFactory = new CommonUserFactory();
+
+
+    }
+
+    @Test
+    public void successTest() {
+        SignupInputData input = new SignupInputData("newUser", "password", "password");
         successPresenter = new SignupOutputBoundary() {
             @Override
             public void prepareSuccessView(SignupOutputData user) {
@@ -35,33 +41,9 @@ public class SignupInteractorTest {
                 fail("Use case failure is unexpected.");
             }
         };
-        failurePresenter = new SignupOutputBoundary() {
-            @Override
-            public void prepareSuccessView(SignupOutputData user) {
-                fail("Use case success is unexpected.");
-            }
 
-            @Override
-            public void prepareFailView(String error) {
-                // Error message will be set in individual tests
-            }
-        };
         interactor = new SignupInteractor(userRepository, successPresenter, userFactory);
-    }
-
-    @After
-    public void tearDown() {
-        userRepository = null;
-        userFactory = null;
-        interactor = null;
-        successPresenter = null;
-        failurePresenter = null;
-    }
-
-    @Test
-    public void successTest() {
-        SignupInputData inputData = new SignupInputData("newUser", "password", "password");
-        interactor.execute(inputData);
+        interactor.execute(input);
     }
 
     @Test
