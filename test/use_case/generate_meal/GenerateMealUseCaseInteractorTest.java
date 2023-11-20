@@ -1,12 +1,7 @@
 package use_case.generate_meal;
 
 import app.custom_data.Range;
-import data_access.MemoryUserDataAccessObject;
-import interface_adapter.generate_meal.GenerateMealController;
-import org.junit.Before;
 import org.junit.Test;
-import use_case.login.LoginUserDataAccessInterface;
-import use_case.save_preferences.SavePreferencesDataAccessInterface;
 
 import java.util.Arrays;
 import java.util.List;
@@ -126,10 +121,10 @@ public class GenerateMealUseCaseInteractorTest{
         GenerateMealInputData inputData = new GenerateMealInputData(List.of("peanut-free"),
                 List.of("abc"), //invalid health preference
                 List.of(""), //if mealType is empty, it will return 400 bad request
-                new Range<Integer>(0, 300), //Cal range(per serving),
-                new Range<Integer>(0, 100), //Carb range(per serving)
-                new Range<Integer>(0, 100), //Protein range(per serving)
-                new Range<Integer>(0, 40)); //Fat range(per serving)
+                new Range<>(0, 300), //Cal range(per serving),
+                new Range<>(0, 100), //Carb range(per serving)
+                new Range<>(0, 100), //Protein range(per serving)
+                new Range<>(0, 40)); //Fat range(per serving)
         GenerateMealInputBoundary interactor = new GenerateMealUseCaseInteractor(failPresenter);
 
         interactor.execute(inputData);
