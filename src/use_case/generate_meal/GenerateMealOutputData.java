@@ -7,14 +7,14 @@ public class GenerateMealOutputData {
     public Object count;
     public Object _links;
 
-    public Meals[] meals;
+    public Hits[] hits;
 
-    public Meals[] getMeals() {
-        return meals;
+    public Hits[] getMeals() {
+        return hits;
     }
 
 
-    public class Meals{
+    public class Hits{
         public Recipe recipe;
         public Recipe getRecipe() {
             return recipe;
@@ -30,7 +30,12 @@ public class GenerateMealOutputData {
         private String url; //Source URL
 
         private double calories;
-        private double totalTime;
+        private double yield; //servings
+
+        private String[] healthLabels;
+        private String[] mealType;
+        private String[] dishType;
+
 
         public String getLabel(){
             return label;
@@ -51,8 +56,18 @@ public class GenerateMealOutputData {
             return calories;
         }
 
-        public double getTotalTime() {
-            return totalTime;
+        public double getServings() {
+            return yield;
+        }
+        public String[] getHealthLabels() {
+            return healthLabels;
+        }
+        public String[] getMealType() {
+            return mealType;
+        }
+
+        public String[] getDishType() {
+            return dishType;
         }
 
         public TotalNutrients getTotalNutrients() {
@@ -71,7 +86,7 @@ public class GenerateMealOutputData {
                 return PROCNT;
             }
 
-            public Nutrients getFAT() {
+            public Nutrients getFat() {
                 return FAT;
             }
 
