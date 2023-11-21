@@ -2,12 +2,12 @@ package use_case.generate_meal;
 
 public class GenerateMealOutputData {
 
-    public Object from;
-    public Object to;
-    public Object count;
-    public Object _links;
+    private Object from;
+    private Object to;
+    private Object count;
+    private Object _links;
 
-    public Hits[] hits;
+    private Hits[] hits;
 
     public Hits[] getMeals() {
         return hits;
@@ -35,6 +35,8 @@ public class GenerateMealOutputData {
         private String[] healthLabels;
         private String[] mealType;
         private String[] dishType;
+
+        private TotalNutrients totalNutrients;
 
 
         public String getLabel(){
@@ -74,7 +76,7 @@ public class GenerateMealOutputData {
             return totalNutrients;
         }
 
-        private TotalNutrients totalNutrients;
+
 
         public class TotalNutrients{
             private Nutrients PROCNT; //protein
