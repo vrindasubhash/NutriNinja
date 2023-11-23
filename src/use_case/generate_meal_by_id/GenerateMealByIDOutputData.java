@@ -1,6 +1,5 @@
 package use_case.generate_meal_by_id;
 
-import use_case.generate_meal.GenerateMealOutputData;
 
 public class GenerateMealByIDOutputData {
 
@@ -69,9 +68,9 @@ public class GenerateMealByIDOutputData {
 
 
         public class TotalNutrients {
-            private TotalNutrients.Nutrients PROCNT; //protein
-            private TotalNutrients.Nutrients FAT;
-            private TotalNutrients.Nutrients CHOCDF; //Carbs
+            private Nutrients PROCNT; //protein
+            private Nutrients FAT;
+            private Nutrients CHOCDF; //Carbs
 
 
             public Nutrients getProtein() {
