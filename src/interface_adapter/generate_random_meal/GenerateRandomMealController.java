@@ -1,5 +1,6 @@
 package interface_adapter.generate_random_meal;
 
+import app.custom_data.RandomRecipesList;
 import use_case.generate_meal.GenerateMealInputBoundary;
 import use_case.generate_meal_by_id.GenerateMealByIDInputBoundary;
 import use_case.generate_meal_by_id.GenerateMealByIDInputData;
@@ -13,7 +14,13 @@ public class GenerateRandomMealController {
         this.generateMealByIDInteractor = generateMealUseCaseInteractor;
     }
 
-    public void execute(String mealID){
+    public void execute(){
+        // Generate a random number between 0 and 19 inclusive
+        int index = (int)(Math.random() * 20);
+
+        String mealID = new RandomRecipesList().getRandomRecipe(index);
+
+
         GenerateMealByIDInputData inputData = new GenerateMealByIDInputData(mealID);
         generateMealByIDInteractor.execute(inputData);
     }
