@@ -25,12 +25,8 @@ public class RandomRecipesList {
             "b9cd1c0d85f503db9db4a9702c757e41"
     };
 
-    public RandomRecipesList(){
+    private RandomRecipesList(){
 
-    }
-
-    public String getRandomRecipe(int index){
-        return randomRecipesList[index];
     }
 
 

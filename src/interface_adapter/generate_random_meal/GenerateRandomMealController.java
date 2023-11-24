@@ -18,8 +18,7 @@ public class GenerateRandomMealController {
         // Generate a random number between 0 and 19 inclusive
         int index = (int)(Math.random() * 20);
 
-        String mealID = new RandomRecipesList().getRandomRecipe(index);
-
+        String mealID = RandomRecipesList.randomRecipesList[index];
 
         GenerateMealByIDInputData inputData = new GenerateMealByIDInputData(mealID);
         generateMealByIDInteractor.execute(inputData);
