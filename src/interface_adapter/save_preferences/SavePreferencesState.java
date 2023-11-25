@@ -6,7 +6,7 @@ import app.custom_data.Range;
 import entity.NutrientRange;
 
 public class SavePreferencesState {
-    private NutrientRange nutrientRange = new NutrientRange(new Range<>(), new Range<>(), new Range<>(), new Range<>());
+    private NutrientRange nutrientRange = new NutrientRange(new Range<>(0, 10000), new Range<>(0, 10000), new Range<>(0, 10000), new Range<>(0, 10000));
     private List<String> healthPreferences = new ArrayList<>();
     private List<String> dishType = new ArrayList<>();
 

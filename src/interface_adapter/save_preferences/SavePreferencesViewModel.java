@@ -3,6 +3,7 @@ package interface_adapter.save_preferences;
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class SavePreferencesViewModel extends ViewModel {
 
@@ -16,18 +17,26 @@ public class SavePreferencesViewModel extends ViewModel {
 
     private SavePreferencesState state = new SavePreferencesState();
 
-    private SavePreferencesState getState(){
+    public SavePreferencesViewModel(String viewName) {
+        super(viewName);
+    }
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+    public void setState(SavePreferencesState state) {
+        this.state = state;
+    }
+
+    public SavePreferencesState getState(){
         return state;
     }
 
-
     @Override
-    public void firePropertyChanged() {
-
+    public void firePropertyChanged()  {
+        support.firePropertyChange("state", null, this.state);
     }
+
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
-
+        support.addPropertyChangeListener(listener);
     }
 }
