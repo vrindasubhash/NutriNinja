@@ -8,7 +8,7 @@ import okhttp3.ResponseBody;
 
 import java.io.IOException;
 
-public class GenerateMealByIDInteractor implements GenerateMealByIDInputBoundary{
+public class GenerateMealByIDInteractor implements GenerateMealByIDInputBoundary {
 
     final GenerateMealByIDOutputBoundary generateMealByIDPresenter;
 

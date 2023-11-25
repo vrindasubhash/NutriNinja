@@ -1,92 +1,107 @@
 package use_case.generate_meal_by_id;
 
+
 public class GenerateMealByIDOutputData {
-    private String label; //Recipe name
-    private String image; //Image URL
-    private String source; //Source name
-    private String url; //Source URL
 
-    private double calories;
-    private double yield; //servings
+    public Recipe recipe;
 
-    private String[] healthLabels;
-    private String[] mealType;
-    private String[] dishType;
-
-
-    public String getLabel(){
-        return label;
-    }
-    public String getImage() {
-        return image;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public String getSource() {
-        return source;
-    }
+    public class Recipe {
 
-    public String getUrl() {
-        return url;
-    }
+        private String label; //Recipe name
+        private String image; //Image URL
+        private String source; //Source name
+        private String url; //Source URL
 
-    public double getCalories() {
-        return calories;
-    }
+        private double calories;
+        private double yield; //servings
 
-    public double getServings() {
-        return yield;
-    }
-    public String[] getHealthLabels() {
-        return healthLabels;
-    }
-    public String[] getMealType() {
-        return mealType;
-    }
+        private String[] healthLabels;
+        private String[] mealType;
+        private String[] dishType;
 
-    public String[] getDishType() {
-        return dishType;
-    }
-
-    public TotalNutrients getTotalNutrients() {
-        return totalNutrients;
-    }
-
-    private TotalNutrients totalNutrients;
-
-    public class TotalNutrients{
-        private Nutrients PROCNT; //protein
-        private Nutrients FAT;
-        private Nutrients CHOCDF; //Carbs
+        private TotalNutrients totalNutrients;
 
 
-        public Nutrients getProtein() {
-            return PROCNT;
+        public String getLabel() {
+            return label;
         }
 
-        public Nutrients getFat() {
-            return FAT;
+        public String getImage() {
+            return image;
         }
 
-        public Nutrients getCarb() {
-            return CHOCDF;
+        public String getSource() {
+            return source;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public double getCalories() {
+            return calories;
+        }
+
+        public double getServings() {
+            return yield;
+        }
+
+        public String[] getHealthLabels() {
+            return healthLabels;
+        }
+
+        public String[] getMealType() {
+            return mealType;
+        }
+
+        public String[] getDishType() {
+            return dishType;
+        }
+
+        public TotalNutrients getTotalNutrients() {
+            return totalNutrients;
         }
 
 
-        public class Nutrients {
-            private String label;
-            private double quantity;
-            private String unit;
+        public class TotalNutrients {
+            private Nutrients PROCNT; //protein
+            private Nutrients FAT;
+            private Nutrients CHOCDF; //Carbs
 
-            public String getLabel() {
-                return label;
+
+            public Nutrients getProtein() {
+                return PROCNT;
             }
 
-            public double getQuantity() {
-                return quantity;
+            public Nutrients getFat() {
+                return FAT;
             }
 
-            public String getUnit() {
-                return unit;
+            public Nutrients getCarb() {
+                return CHOCDF;
+            }
+
+
+            public class Nutrients {
+                private String label;
+                private double quantity;
+                private String unit;
+
+                public String getLabel() {
+                    return label;
+                }
+
+                public double getQuantity() {
+                    return quantity;
+                }
+
+                public String getUnit() {
+                    return unit;
+                }
             }
         }
     }
