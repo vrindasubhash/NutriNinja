@@ -7,8 +7,7 @@ import use_case.generate_meal_by_id.GenerateMealByIDInputData;
 import use_case.generate_meal_by_id.GenerateMealByIDInteractor;
 
 public class GenerateRandomMealController {
-
-    final GenerateMealByIDInteractor generateMealByIDInteractor;
+    final GenerateMealByIDInputBoundary generateMealByIDInteractor;
 
     public GenerateRandomMealController(GenerateMealByIDInputBoundary generateMealUseCaseInteractor) {
         this.generateMealByIDInteractor = generateMealUseCaseInteractor;
