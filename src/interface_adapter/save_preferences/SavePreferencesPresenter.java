@@ -14,12 +14,11 @@ public class SavePreferencesPresenter implements SavePreferencesOutputBoundary {
         // On success, present the user with the success message
 
         SavePreferencesState saveState = saveViewModel.getState();
+        saveState.setDishType(response.getUserPreferences().getDishType());
+        saveState.setHealthPreferences(response.getUserPreferences().getHealthPreferences());
+        saveState.setNutrientRange(response.getUserPreferences().getNutrientRange());
         this.saveViewModel.setState(saveState);
-    }
-    public void prepareFailView(SavePreferencesOutputData response) {
-        // On fail, present the user with the fail message
-
-
+        this.saveViewModel.firePropertyChanged();
     }
 }
 
