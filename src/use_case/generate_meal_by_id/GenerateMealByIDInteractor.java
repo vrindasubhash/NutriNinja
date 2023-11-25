@@ -9,7 +9,6 @@ import okhttp3.ResponseBody;
 import java.io.IOException;
 
 public class GenerateMealByIDInteractor implements GenerateMealByIDInputBoundary {
-
     final GenerateMealByIDOutputBoundary generateMealByIDPresenter;
 
     public GenerateMealByIDInteractor(GenerateMealByIDOutputBoundary generateMealByIDPresenter) {
@@ -34,7 +33,7 @@ public class GenerateMealByIDInteractor implements GenerateMealByIDInputBoundary
             if (response.code() == 200) {
                 Gson responseBody = new Gson();
                 ResponseBody body = response.body();
-                String content = body.string(); //Needed to be called only once, or else responseBody.fromJson will not work
+                String content = body.string(); // Needed to be called only once, or else responseBody.fromJson will not work
                 GenerateMealByIDOutputData outputData = responseBody.fromJson(content, GenerateMealByIDOutputData.class);
                 generateMealByIDPresenter.prepareSuccessView(outputData);
             } else {
