@@ -1,28 +1,15 @@
-package use_case.generate_meal;
+package use_case.generate_meal_by_id;
 
-public class GenerateMealOutputData {
 
-    private Object from;
-    private Object to;
-    private Object count;
-    private Object _links;
+public class GenerateMealByIDOutputData {
 
-    private Hits[] hits;
+    public Recipe recipe;
 
-    public Hits[] getMeals() {
-        return hits;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-
-    public class Hits{
-        public Recipe recipe;
-        public Recipe getRecipe() {
-            return recipe;
-        }
-
-    }
-
-    public class Recipe{
+    public class Recipe {
 
         private String label; //Recipe name
         private String image; //Image URL
@@ -39,9 +26,10 @@ public class GenerateMealOutputData {
         private TotalNutrients totalNutrients;
 
 
-        public String getLabel(){
+        public String getLabel() {
             return label;
         }
+
         public String getImage() {
             return image;
         }
@@ -61,9 +49,11 @@ public class GenerateMealOutputData {
         public double getServings() {
             return yield;
         }
+
         public String[] getHealthLabels() {
             return healthLabels;
         }
+
         public String[] getMealType() {
             return mealType;
         }
@@ -77,8 +67,7 @@ public class GenerateMealOutputData {
         }
 
 
-
-        public class TotalNutrients{
+        public class TotalNutrients {
             private Nutrients PROCNT; //protein
             private Nutrients FAT;
             private Nutrients CHOCDF; //Carbs
