@@ -34,24 +34,19 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final SignupController signupController;
     private final JButton signUp;
     private final JButton cancel;
-    private final JButton clear;
 
     public SignupView(SignupController controller, final SignupViewModel signupViewModel) {
         this.signupController = controller;
         this.signupViewModel = signupViewModel;
         signupViewModel.addPropertyChangeListener(this);
-        JLabel title = new JLabel("Sign Up View");
-        title.setAlignmentX(0.5F);
-        LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel("Choose username"), this.usernameInputField);
-        LabelTextPanel passwordInfo = new LabelTextPanel(new JLabel("Choose password"), this.passwordInputField);
-        LabelTextPanel repeatPasswordInfo = new LabelTextPanel(new JLabel("Enter password again"), this.repeatPasswordInputField);
+        LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel("Username"), this.usernameInputField);
+        LabelTextPanel passwordInfo = new LabelTextPanel(new JLabel("Password"), this.passwordInputField);
+        LabelTextPanel repeatPasswordInfo = new LabelTextPanel(new JLabel("Re-Enter Password"), this.repeatPasswordInputField);
         JPanel buttons = new JPanel();
         this.signUp = new JButton("Sign up");
         buttons.add(this.signUp);
         this.cancel = new JButton("Cancel");
         buttons.add(this.cancel);
-        this.clear = new JButton("Clear");
-        buttons.add(this.clear);
         this.signUp.addActionListener((evt) -> {
             if (evt.getSource().equals(this.signUp)) {
                 SignupState currentState = signupViewModel.getState();
@@ -59,11 +54,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
             }
 
         });
-        this.clear.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
         this.cancel.addActionListener(this);
         this.usernameInputField.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
@@ -109,7 +100,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
             }
         });
         this.setLayout(new BoxLayout(this, 1));
-        this.add(title);
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(repeatPasswordInfo);
@@ -128,27 +118,27 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     }
 
-//    public static void main(String[] args) {
-//        JFrame frame = new JFrame("Signup Test");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(400, 300); // Set an appropriate size
-//
-//        SignupViewModel viewModel = new SignupViewModel();
-//
-//        // Implement a simple version of SignupInputBoundary for testing
-//        SignupInputBoundary mockSignupInteractor = new SignupInputBoundary() {
-//            @Override
-//            public void execute(SignupInputData signupInputData) {
-//                System.out.println("Signup requested with: " + signupInputData);
-//                // Add mock logic as needed for testing
-//            }
-//        };
-//
-//        SignupController controller = new SignupController(mockSignupInteractor);
-//
-//        SignupView signupView = new SignupView(controller, viewModel);
-//
-//        frame.add(signupView);
-//        frame.setVisible(true);
-//    }
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Signup Test");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 300); // Set an appropriate size
+
+        SignupViewModel viewModel = new SignupViewModel();
+
+        // Implement a simple version of SignupInputBoundary for testing
+        SignupInputBoundary mockSignupInteractor = new SignupInputBoundary() {
+            @Override
+            public void execute(SignupInputData signupInputData) {
+                System.out.println("Signup requested with: " + signupInputData);
+                // Add mock logic as needed for testing
+            }
+        };
+
+        SignupController controller = new SignupController(mockSignupInteractor);
+
+        SignupView signupView = new SignupView(controller, viewModel);
+
+        frame.add(signupView);
+        frame.setVisible(true);
+    }
 }
