@@ -58,13 +58,13 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
     String[] mealTypeOptions = {"Breakfast", "Lunch", "Dinner", "Snack"};
 
 
-    final JList healthPreferencesInputField = new JList(healthPreferencesOptions);
+    final JList<String> healthPreferencesInputField = new JList<>(healthPreferencesOptions);
     private final JLabel healthPreferencesErrorField = new JLabel();
 
-    final JList dishTypeInputField = new JList(dishTypeOptions);
+    final JList<String> dishTypeInputField = new JList<>(dishTypeOptions);
     private final JLabel dishTypeErrorField = new JLabel();
 
-    final JList mealTypeInputField = new JList(mealTypeOptions);
+    final JList<String> mealTypeInputField = new JList<>(mealTypeOptions);
     private final JLabel mealTypeErrorField = new JLabel();
 
     private final SavePreferencesController savePreferencesController;
@@ -82,7 +82,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         savePreferencesViewModel.addPropertyChangeListener(this);
         this.savePreferencesController = savePreferencesController;
         this.generateMealController = generateMealController;
-        this.generateRandomMealController = generateRandomMealController
+        this.generateRandomMealController = generateRandomMealController;
 
         JLabel title = new JLabel("Enter Preferences");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -130,7 +130,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         buttons.add(feelingLucky);
 
 
-        savePreferences.addActionListener(                // This creates an anonymous subclass of ActionListener and instantiates it.
+        savePreferences.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(savePreferences)) {
@@ -150,7 +150,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                 }
         );
 
-        generateMeal.addActionListener(                // This creates an anonymous subclass of ActionListener and instantiates it.
+        generateMeal.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(generateMeal)) {
@@ -175,7 +175,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                 }
         );
 
-        feelingLucky.addActionListener(                // This creates an anonymous subclass of ActionListener and instantiates it.
+        feelingLucky.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(feelingLucky)) {
@@ -189,8 +189,8 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
             @Override
             public void keyTyped(KeyEvent e) {
                 SavePreferencesState currentState = savePreferencesViewModel.getState();
-                currentState.setNutrientRange(minimumCalorieInputField.getText() + e.getKeyChar());
-                loginViewModel.setState(currentState);
+                currentState.getNutrientRange().getCalorieRange().setLowerBound(Integer.valueOf(minimumCalorieInputField.getText() + e.getKeyChar()));
+                savePreferencesViewModel.setState(currentState);
             }
 
             @Override
@@ -205,9 +205,9 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         maximumCalorieInputField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                LoginState currentState = loginViewModel.getState();
-                currentState.setUsername(usernameInputField.getText() + e.getKeyChar());
-                loginViewModel.setState(currentState);
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.getNutrientRange().getCalorieRange().setUpperBound(Integer.valueOf(maximumCalorieInputField.getText() + e.getKeyChar()));
+                savePreferencesViewModel.setState(currentState);
             }
 
             @Override
@@ -218,6 +218,111 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
             public void keyReleased(KeyEvent e) {
             }
         });
+
+        minimumFatInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.getNutrientRange().getFatRange().setLowerBound(Integer.valueOf(minimumFatInputField.getText() + e.getKeyChar()));
+                savePreferencesViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        maximumFatInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.getNutrientRange().getFatRange().setUpperBound(Integer.valueOf(maximumFatInputField.getText() + e.getKeyChar()));
+                savePreferencesViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        minimumProteinInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.getNutrientRange().getProteinRange().setLowerBound(Integer.valueOf(minimumProteinInputField.getText() + e.getKeyChar()));
+                savePreferencesViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        maximumProteinInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.getNutrientRange().getProteinRange().setUpperBound(Integer.valueOf(maximumProteinInputField.getText() + e.getKeyChar()));
+                savePreferencesViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        minimumCarbInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.getNutrientRange().getCarbRange().setLowerBound(Integer.valueOf(minimumCarbInputField.getText() + e.getKeyChar()));
+                savePreferencesViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        maximumCarbInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.getNutrientRange().getCarbRange().setUpperBound(Integer.valueOf(maximumCarbInputField.getText() + e.getKeyChar()));
+                savePreferencesViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+
+
 
         healthPreferencesInputField.addKeyListener(new KeyListener() {
             @Override
