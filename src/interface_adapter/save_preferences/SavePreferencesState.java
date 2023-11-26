@@ -10,12 +10,14 @@ public class SavePreferencesState {
     private List<String> healthPreferences = new ArrayList<>();
     private List<String> dishType = new ArrayList<>();
     private List<String> mealType = new ArrayList<>();
+    private String username = "";
 
     public SavePreferencesState(SavePreferencesState copy) {
         nutrientRange = copy.nutrientRange;
         healthPreferences = copy.healthPreferences;
         dishType = copy.dishType;
         mealType = copy.mealType;
+        username = copy.username;;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -24,24 +26,22 @@ public class SavePreferencesState {
     public NutrientRange getNutrientRange() {
         return nutrientRange;
     }
-
     public List<String> getHealthPreferences() {
         return healthPreferences;
     }
-
     public List<String> getDishType() {
         return dishType;
     }
     public List<String> getMealType() {return mealType;}
+    public String getUsername() {return username;}
 
     public void setNutrientRange(NutrientRange nutrientRange) {
         this.nutrientRange = nutrientRange;
     }
-
     public void setHealthPreferences(List<String> healthPreferences) {this.healthPreferences = healthPreferences;}
-
     public void setDishType(List<String> dishType) {this.dishType = dishType;}
     public void setMealType(List<String> mealType) {this.mealType = mealType;}
+    public void setUsername(String username) {this.username = username;}
 
 
 }
