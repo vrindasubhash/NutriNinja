@@ -5,6 +5,13 @@ import interface_adapter.generate_random_meal.GenerateRandomMealController;
 import interface_adapter.save_preferences.SavePreferencesController;
 import interface_adapter.save_preferences.SavePreferencesState;
 import interface_adapter.save_preferences.SavePreferencesViewModel;
+import use_case.generate_meal.GenerateMealInputBoundary;
+import use_case.generate_meal.GenerateMealInputData;
+import use_case.generate_meal.GenerateMealUseCaseInteractor;
+import use_case.generate_meal_by_id.GenerateMealByIDInputBoundary;
+import use_case.generate_meal_by_id.GenerateMealByIDInputData;
+import use_case.save_preferences.SavePreferencesInputBoundary;
+import use_case.save_preferences.SavePreferencesInputData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +24,7 @@ import java.beans.PropertyChangeListener;
 
 public class PreferencesView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public final String viewName = "Preferences";
+    public static final String viewName = "Preferences";
 
     JLabel username;
 
@@ -48,6 +55,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
     final JTextField maximumCarbInputField = new JTextField(15);
     private final JLabel maximumCarbErrorField = new JLabel();
 
+    JLabel successLabel = new JLabel("");
 
     String[] healthPreferencesOptions = {"dairy-free", "fish-free", "gluten-free", "keto-friendly",
     "kosher", "low-sugar", "peanut-free", "pescatarian", "pork-free", "vegan", "vegetarian"};
@@ -85,13 +93,16 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel healthPreferencesInfo = new JPanel();
-        healthPreferencesInfo.add(new JLabel("Health Preferences"), healthPreferencesInputField);
+        healthPreferencesInfo.add(new JLabel("Health Preferences"));
+        healthPreferencesInfo.add(healthPreferencesInputField);
 
         JPanel dishTypeInfo = new JPanel();
-        dishTypeInfo.add(new JLabel("Dish Type"), dishTypeInputField);
+        dishTypeInfo.add(new JLabel("Dish Type"));
+        dishTypeInfo.add(dishTypeInputField);
 
         JPanel mealTypeInfo = new JPanel();
-        mealTypeInfo.add(new JLabel("Meal Type"), mealTypeInputField);
+        mealTypeInfo.add(new JLabel("Meal Type"));
+        mealTypeInfo.add(mealTypeInputField);
 
 
         LabelTextPanel minimumCalorieInfo = new LabelTextPanel(
@@ -100,19 +111,19 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                 new JLabel("Maximum Calories"), maximumCalorieInputField);
 
         LabelTextPanel minimumFatInfo = new LabelTextPanel(
-                new JLabel("Minimum Fat"), minimumFatInputField);
+                new JLabel("Minimum Fat (g)"), minimumFatInputField);
         LabelTextPanel maximumFatInfo = new LabelTextPanel(
-                new JLabel("Maximum Fat"), maximumFatInputField);
+                new JLabel("Maximum Fat (g)"), maximumFatInputField);
 
         LabelTextPanel minimumProteinInfo = new LabelTextPanel(
-                new JLabel("Minimum Protein"), minimumProteinInputField);
+                new JLabel("Minimum Protein (g)"), minimumProteinInputField);
         LabelTextPanel maximumProteinInfo = new LabelTextPanel(
-                new JLabel("Maximum Protein"), maximumProteinInputField);
+                new JLabel("Maximum Protein (g)"), maximumProteinInputField);
 
         LabelTextPanel minimumCarbInfo = new LabelTextPanel(
-                new JLabel("Minimum Carbs"), minimumCarbInputField);
+                new JLabel("Minimum Carbs (g)"), minimumCarbInputField);
         LabelTextPanel maximumCarbInfo = new LabelTextPanel(
-                new JLabel("Maximum Carbs"), maximumCarbInputField);
+                new JLabel("Maximum Carbs (g)"), maximumCarbInputField);
 
 
         JLabel usernameInfo = new JLabel("Currently logged in: ");
@@ -142,6 +153,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                                     currentState.getDishType(),
                                     currentState.getUsername()
                             );
+                            successLabel.setText("Preferences Saved!");
                         }
                     }
                 }
@@ -375,22 +387,25 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
+        this.add(username);
 
         this.add(minimumCalorieInfo);
         this.add(minimumCalorieErrorField);
-        this.add(minimumFatInfo);
-        this.add(minimumFatErrorField);
-        this.add(minimumProteinInfo);
-        this.add(minimumProteinErrorField);
-        this.add(minimumCarbInfo);
-        this.add(minimumCarbErrorField);
-
         this.add(maximumCalorieInfo);
         this.add(maximumCalorieErrorField);
+
+        this.add(minimumFatInfo);
+        this.add(minimumFatErrorField);
         this.add(maximumFatInfo);
         this.add(maximumFatErrorField);
+
+        this.add(minimumProteinInfo);
+        this.add(minimumProteinErrorField);
         this.add(maximumProteinInfo);
         this.add(maximumProteinErrorField);
+
+        this.add(minimumCarbInfo);
+        this.add(minimumCarbErrorField);
         this.add(maximumCarbInfo);
         this.add(maximumCarbErrorField);
 
@@ -402,6 +417,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         this.add(mealTypeErrorField);
 
         this.add(buttons);
+        this.add(successLabel);
     }
 
     /**
@@ -415,5 +431,41 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
     public void propertyChange(PropertyChangeEvent evt) {
         SavePreferencesState state = (SavePreferencesState) evt.getNewValue();
         username.setText(state.getUsername());
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Preferences Test");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 1000);
+
+        SavePreferencesViewModel viewModel = new SavePreferencesViewModel(viewName);
+        SavePreferencesInputBoundary fakeSavePreferencesInteractor = new SavePreferencesInputBoundary() {
+            @Override
+            public void execute(SavePreferencesInputData savePreferencesInputData) {
+                System.out.println("Preferences: " + savePreferencesInputData);
+            }
+        };
+
+        GenerateMealInputBoundary fakeGenerateMealInteractor = new GenerateMealInputBoundary() {
+            @Override
+            public void execute(GenerateMealInputData inputData) {
+                System.out.println("Generate Meal: " + inputData);
+            }
+        };
+
+        GenerateMealByIDInputBoundary fakeGenerateMealByIDInteractor = new GenerateMealByIDInputBoundary() {
+            @Override
+            public void execute(GenerateMealByIDInputData inputData) {
+                System.out.println("Generate Random Meal: " + inputData);
+            }
+        };
+
+        SavePreferencesController savePreferencesController1 = new SavePreferencesController(fakeSavePreferencesInteractor);
+        GenerateMealController generateMealController1 = new GenerateMealController(fakeGenerateMealInteractor);
+        GenerateRandomMealController generateRandomMealController1 = new GenerateRandomMealController(fakeGenerateMealByIDInteractor);
+        PreferencesView preferencesView = new PreferencesView(viewModel, savePreferencesController1, generateMealController1, generateRandomMealController1);
+
+        frame.add(preferencesView);
+        frame.setVisible(true);
     }
 }
