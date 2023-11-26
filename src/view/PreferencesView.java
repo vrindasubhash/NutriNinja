@@ -69,7 +69,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
 
     private final SavePreferencesController savePreferencesController;
     private final GenerateMealController generateMealController;
-    private final GenerateRandomMealController generateRandomMealController
+    private final GenerateRandomMealController generateRandomMealController;
 
 
     /**
@@ -134,7 +134,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(savePreferences)) {
-                            SavePreferencesState currentState = SavePreferencesViewModel.getState();
+                            SavePreferencesState currentState = savePreferencesViewModel.getState();
 
                             savePreferencesController.execute(
                                     currentState.getNutrientRange().getCalorieRange(),
@@ -410,5 +410,9 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SavePreferencesState state = (SavePreferencesState) evt.getNewValue();
+        username.setText(state.getUsername());
     }
+
+
+
 }
