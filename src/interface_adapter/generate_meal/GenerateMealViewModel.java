@@ -17,21 +17,29 @@ public class GenerateMealViewModel extends ViewModel {
 
     //Index of meal from 0 to 19 inclusive
 
+
     private int index = (int)(Math.random() * 20);
-    public String MEAL_LABEL = data.getMeals()[index].getRecipe().getLabel();
-    public String IMAGE_URL = data.getMeals()[index].getRecipe().getImage(); //URL of image
-    public double MEAL_CALORIES = data.getMeals()[index].getRecipe().getCalories();
-    public double MEAL_PROTEIN = data.getMeals()[index].getRecipe().getTotalNutrients().getProtein().getQuantity();
-    public double MEAL_CARBS =  data.getMeals()[index].getRecipe().getTotalNutrients().getCarb().getQuantity();
-    public double MEAL_FAT = data.getMeals()[index].getRecipe().getTotalNutrients().getFat().getQuantity();
+    public String mealName = data.getMeals()[index].getRecipe().getLabel();
+    public String image_url = data.getMeals()[index].getRecipe().getImage(); //URL of image
+    public double mealCalories = data.getMeals()[index].getRecipe().getCalories();
+    public double mealProtein = data.getMeals()[index].getRecipe().getTotalNutrients().getProtein().getQuantity();
+    public double meaLCarbs =  data.getMeals()[index].getRecipe().getTotalNutrients().getCarb().getQuantity();
+    public double meal_Fat = data.getMeals()[index].getRecipe().getTotalNutrients().getFat().getQuantity();
 
 
     //INGREDIENTS
-    public String INGREDIENTS_LABEL = Arrays.toString(data.getMeals()[index].getRecipe().getIngredientLines());
+    public final static String INGREDIENTS_HEADER = "Ingredients";
+    public String ingredients = Arrays.toString(data.getMeals()[index].getRecipe().getIngredientLines());
 
 
     //Recipe
-    public String RECIPE_LABEL = data.getMeals()[index].getRecipe().getUrl(); //url of recipe
+    public final static String RECIPE_HEADER = "Recipe Link";
+    public String recipeSource =  data.getMeals()[index].getRecipe().getSource(); //source of recipe
+    public String recipeLink = data.getMeals()[index].getRecipe().getUrl(); //url of recipe
+
+    //Buttons
+    public String BACK_BUTTON_LABEL = "Back";
+    public String REGENERATE_BUTTON_LABEL = "Generate Another Meal";
 
     private GenerateMealState state= new GenerateMealState();
 
