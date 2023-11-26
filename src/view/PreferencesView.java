@@ -2,7 +2,6 @@ package view;
 
 import interface_adapter.generate_meal.GenerateMealController;
 import interface_adapter.generate_random_meal.GenerateRandomMealController;
-import interface_adapter.login.LoginController;
 import interface_adapter.save_preferences.SavePreferencesController;
 import interface_adapter.save_preferences.SavePreferencesState;
 import interface_adapter.save_preferences.SavePreferencesViewModel;
@@ -15,8 +14,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PreferencesView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -397,6 +394,13 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         this.add(maximumCarbInfo);
         this.add(maximumCarbErrorField);
 
+        this.add(healthPreferencesInfo);
+        this.add(healthPreferencesErrorField);
+        this.add(dishTypeInfo);
+        this.add(dishTypeErrorField);
+        this.add(mealTypeInfo);
+        this.add(mealTypeErrorField);
+
         this.add(buttons);
     }
 
@@ -412,7 +416,4 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         SavePreferencesState state = (SavePreferencesState) evt.getNewValue();
         username.setText(state.getUsername());
     }
-
-
-
 }
