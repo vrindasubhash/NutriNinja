@@ -33,6 +33,8 @@ public class GenerateMealOutputData {
         private double yield; //servings
 
         private String[] healthLabels;
+
+        private String[] ingredientLines;
         private String[] mealType;
         private String[] dishType;
 
@@ -63,6 +65,10 @@ public class GenerateMealOutputData {
         }
         public String[] getHealthLabels() {
             return healthLabels;
+        }
+
+        public String[] getIngredientLines() {
+            return ingredientLines;
         }
         public String[] getMealType() {
             return mealType;
