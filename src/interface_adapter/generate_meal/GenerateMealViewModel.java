@@ -12,30 +12,26 @@ public class GenerateMealViewModel extends ViewModel {
     public static final String TITLE = "Meal Page";//TITLE
 
 
-    public GenerateMealOutputData data = new GenerateMealOutputData();
     //HEADERS
-
-    //Index of meal from 0 to 19 inclusive
-
-
-    private int index = (int)(Math.random() * 20);
-    public String mealName = data.getMeals()[index].getRecipe().getLabel();
-    public String image_url = data.getMeals()[index].getRecipe().getImage(); //URL of image
-    public double mealCalories = data.getMeals()[index].getRecipe().getCalories();
-    public double mealProtein = data.getMeals()[index].getRecipe().getTotalNutrients().getProtein().getQuantity();
-    public double meaLCarbs =  data.getMeals()[index].getRecipe().getTotalNutrients().getCarb().getQuantity();
-    public double meal_Fat = data.getMeals()[index].getRecipe().getTotalNutrients().getFat().getQuantity();
-
-
-    //INGREDIENTS
+    public static final String CALORIES_HEADER = "Calories: ";
+    public static final String PROTEIN_HEADER = "Protein: ";
+    public static final String CARBS_HEADER = "Carbs: ";
+    public static final String FAT_HEADER = "Fat: ";
     public final static String INGREDIENTS_HEADER = "Ingredients";
-    public String ingredients = Arrays.toString(data.getMeals()[index].getRecipe().getIngredientLines());
+    public final static String RECIPE_LINK_HEADER = "Recipe Link";
+    public final static String RECIPE_SOURCE_HEADER = "Recipe Source";
 
 
-    //Recipe
-    public final static String RECIPE_HEADER = "Recipe Link";
-    public String recipeSource =  data.getMeals()[index].getRecipe().getSource(); //source of recipe
-    public String recipeLink = data.getMeals()[index].getRecipe().getUrl(); //url of recipe
+
+    //LABELS
+    public static final String CALORIES_LABEL = "";
+    public static final String PROTEIN_LABEL = "";
+    public static final String CARBS_LABEL = "";
+    public static final String FAT_LABEL = "";
+    public static final String INGREDIENTS_LABEL = "";
+    public static final String RECIPE_LINK_LABEL = "";
+    public static final String RECIPE_SOURCE_LABEL = "";
+
 
     //Buttons
     public String BACK_BUTTON_LABEL = "Back";
@@ -46,7 +42,7 @@ public class GenerateMealViewModel extends ViewModel {
     public GenerateMealState getLoginState(){
         return state;
     }
-    public void setLoginState(GenerateMealState state){
+    public void setState(GenerateMealState state){
         this.state = state;
     }
 
