@@ -1,6 +1,5 @@
 package use_case.generate_meal_by_id;
 
 public interface GenerateMealByIDInputBoundary {
-
-    void execute(GenerateMealByIDOutputData outputData);
+    void execute(GenerateMealByIDInputData inputData);
 }

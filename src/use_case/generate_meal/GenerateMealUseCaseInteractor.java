@@ -49,15 +49,12 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
                 .addHeader("Accept", "application/json")
                 .addHeader("Accept-Language", "en")
                 .build();
-        try {
-            Response response = client.newCall(request).execute();
-            System.out.println(response.code());
 
-
+        try (Response response = client.newCall(request).execute()) {
             if (response.code() == 200) {
                 Gson responseBody = new Gson();
                 ResponseBody body = response.body();
-                String content = body.string(); //Needed to be called only once, or else responseBody.fromJson will not work
+                String content = body.string(); // Needed to be called only once, or else responseBody.fromJson will not work
                 GenerateMealOutputData outputData = responseBody.fromJson(content, GenerateMealOutputData.class);
 
                 //No meals found
