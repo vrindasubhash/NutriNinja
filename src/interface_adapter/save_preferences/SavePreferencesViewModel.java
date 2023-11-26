@@ -16,7 +16,7 @@ public class SavePreferencesViewModel extends ViewModel {
     public static final String GENERATE_MEAL_BUTTON_LABEL = "Generate Meal";
     public static final String FEELING_LUCKY_BUTTON_LABEL = "I'm Feeling Lucky";
 
-    private SavePreferencesState state = new SavePreferencesState();
+    private static SavePreferencesState state = new SavePreferencesState();
 
     public SavePreferencesViewModel(String viewName) {
         super(viewName);
@@ -26,7 +26,7 @@ public class SavePreferencesViewModel extends ViewModel {
         this.state = state;
     }
 
-    public SavePreferencesState getState(){
+    public static SavePreferencesState getState(){
         return state;
     }
 
