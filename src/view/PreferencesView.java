@@ -378,8 +378,25 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-        this.add(usernameInfo);
-        this.add(username);
+
+        this.add(minimumCalorieInfo);
+        this.add(minimumCalorieErrorField);
+        this.add(minimumFatInfo);
+        this.add(minimumFatErrorField);
+        this.add(minimumProteinInfo);
+        this.add(minimumProteinErrorField);
+        this.add(minimumCarbInfo);
+        this.add(minimumCarbErrorField);
+
+        this.add(maximumCalorieInfo);
+        this.add(maximumCalorieErrorField);
+        this.add(maximumFatInfo);
+        this.add(maximumFatErrorField);
+        this.add(maximumProteinInfo);
+        this.add(maximumProteinErrorField);
+        this.add(maximumCarbInfo);
+        this.add(maximumCarbErrorField);
+
         this.add(buttons);
     }
 
