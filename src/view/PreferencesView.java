@@ -11,8 +11,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PreferencesView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -54,13 +58,13 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
     String[] mealTypeOptions = {"Breakfast", "Lunch", "Dinner", "Snack"};
 
 
-    final JComboBox healthPreferencesInputField = new JComboBox(healthPreferencesOptions);
+    final JList healthPreferencesInputField = new JList(healthPreferencesOptions);
     private final JLabel healthPreferencesErrorField = new JLabel();
 
-    final JComboBox dishTypeInputField = new JComboBox(dishTypeOptions);
+    final JList dishTypeInputField = new JList(dishTypeOptions);
     private final JLabel dishTypeErrorField = new JLabel();
 
-    final JComboBox mealTypeInputField = new JComboBox(mealTypeOptions);
+    final JList mealTypeInputField = new JList(mealTypeOptions);
     private final JLabel mealTypeErrorField = new JLabel();
 
     private final SavePreferencesController savePreferencesController;
@@ -180,6 +184,91 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                     }
                 }
         );
+
+        minimumCalorieInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.setNutrientRange(minimumCalorieInputField.getText() + e.getKeyChar());
+                loginViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        maximumCalorieInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                LoginState currentState = loginViewModel.getState();
+                currentState.setUsername(usernameInputField.getText() + e.getKeyChar());
+                loginViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        healthPreferencesInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.setHealthPreferences(healthPreferencesInputField.getSelectedValuesList());
+                savePreferencesViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        dishTypeInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.setDishType(dishTypeInputField.getSelectedValuesList());
+                savePreferencesViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        mealTypeInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                SavePreferencesState currentState = savePreferencesViewModel.getState();
+                currentState.setMealType(mealTypeInputField.getSelectedValuesList());
+                savePreferencesViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
