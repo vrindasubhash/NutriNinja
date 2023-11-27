@@ -32,3 +32,4 @@ public class SignupPresenter implements SignupOutputBoundary {
         this.signupViewModel.firePropertyChanged();
     }
 }
+
