@@ -1,9 +1,10 @@
 package interface_adapter.login;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.save_preferences.SavePreferencesState;
+import interface_adapter.save_preferences.SavePreferencesViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
-import use_case.save_preferences.SavePreferencesInputData;
 
 public class LoginPresenter implements LoginOutputBoundary {
 
