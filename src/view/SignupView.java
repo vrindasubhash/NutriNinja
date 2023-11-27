@@ -62,8 +62,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.usernameInputField.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
                 SignupState currentState = signupViewModel.getState();
-                String var10000 = SignupView.this.usernameInputField.getText();
-                String text = var10000 + e.getKeyChar();
+                String user = SignupView.this.usernameInputField.getText();
+                String text = user + e.getKeyChar();
                 currentState.setUsername(text);
                 signupViewModel.setState(currentState);
             }
@@ -77,8 +77,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.passwordInputField.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
                 SignupState currentState = signupViewModel.getState();
-                String var10001 = SignupView.this.passwordInputField.getText();
-                currentState.setPassword(var10001 + e.getKeyChar());
+                String pass = SignupView.this.passwordInputField.getText();
+                currentState.setPassword(pass + e.getKeyChar());
                 signupViewModel.setState(currentState);
             }
 
@@ -91,8 +91,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.repeatPasswordInputField.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
                 SignupState currentState = signupViewModel.getState();
-                String var10001 = SignupView.this.repeatPasswordInputField.getText();
-                currentState.setRepeatPassword(var10001 + e.getKeyChar());
+                String pass = SignupView.this.repeatPasswordInputField.getText();
+                currentState.setRepeatPassword(pass + e.getKeyChar());
                 signupViewModel.setState(currentState);
             }
 
