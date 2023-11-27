@@ -7,7 +7,6 @@ import interface_adapter.save_preferences.SavePreferencesState;
 import interface_adapter.save_preferences.SavePreferencesViewModel;
 import use_case.generate_meal.GenerateMealInputBoundary;
 import use_case.generate_meal.GenerateMealInputData;
-import use_case.generate_meal.GenerateMealUseCaseInteractor;
 import use_case.generate_meal_by_id.GenerateMealByIDInputBoundary;
 import use_case.generate_meal_by_id.GenerateMealByIDInputData;
 import use_case.save_preferences.SavePreferencesInputBoundary;
@@ -127,7 +126,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
 
 
         JLabel usernameInfo = new JLabel("Currently logged in: ");
-        username = new JLabel();
+        username = new JLabel("");
 
         JPanel buttons = new JPanel();
         savePreferences = new JButton(SavePreferencesViewModel.SAVE_PREFERENCES_BUTTON_LABEL);
@@ -177,7 +176,16 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                                     currentState.getNutrientRange().getProteinRange().getUpperBound(),
                                     currentState.getNutrientRange().getFatRange().getLowerBound(),
                                     currentState.getNutrientRange().getFatRange().getUpperBound()
+                            );
 
+                            savePreferencesController.execute(
+                                    currentState.getNutrientRange().getCalorieRange(),
+                                    currentState.getNutrientRange().getFatRange(),
+                                    currentState.getNutrientRange().getProteinRange(),
+                                    currentState.getNutrientRange().getCarbRange(),
+                                    currentState.getHealthPreferences(),
+                                    currentState.getDishType(),
+                                    currentState.getUsername()
                             );
                         }
                     }
@@ -386,8 +394,8 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        this.add(usernameInfo);
         this.add(title);
-        this.add(username);
 
         this.add(minimumCalorieInfo);
         this.add(minimumCalorieErrorField);
