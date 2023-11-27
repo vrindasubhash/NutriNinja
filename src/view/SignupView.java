@@ -4,8 +4,6 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
-import use_case.signup.SignupInputBoundary;
-import use_case.signup.SignupInputData;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,11 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-
-import javax.swing.JFrame;
-import java.awt.CardLayout;
-import javax.swing.JPanel;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "sign up";
@@ -128,33 +121,5 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
             JOptionPane.showMessageDialog(this, state.getUsernameError());
         }
 
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Signup Test");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300); // Set an appropriate size
-
-        SignupViewModel viewModel = new SignupViewModel();
-
-        // Implement a simple version of SignupInputBoundary for testing
-        SignupInputBoundary mockSignupInteractor = new SignupInputBoundary() {
-            @Override
-            public void execute(SignupInputData signupInputData) {
-                System.out.println("Signup requested with: " + signupInputData);
-                // Add mock logic as needed for testing
-            }
-        };
-
-        SignupController controller = new SignupController(mockSignupInteractor);
-
-        // Create an instance of ViewManagerModel
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
-
-        // Pass the newly created ViewManagerModel as the third argument
-        SignupView signupView = new SignupView(controller, viewModel, viewManagerModel);
-
-        frame.add(signupView);
-        frame.setVisible(true);
     }
 }
