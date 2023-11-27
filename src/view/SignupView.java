@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.ViewManagerModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
@@ -33,11 +34,14 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
     private final SignupController signupController;
     private final JButton signUp;
-    private final JButton cancel;
+    private final JButton alreadyHaveAccount = new JButton("Already have an account");
 
-    public SignupView(SignupController controller, final SignupViewModel signupViewModel) {
+    private final ViewManagerModel viewManagerModel;
+
+    public SignupView(SignupController controller, final SignupViewModel signupViewModel, ViewManagerModel viewManagerModel) {
         this.signupController = controller;
         this.signupViewModel = signupViewModel;
+        this.viewManagerModel = viewManagerModel;
         signupViewModel.addPropertyChangeListener(this);
         LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel("Username"), this.usernameInputField);
         LabelTextPanel passwordInfo = new LabelTextPanel(new JLabel("Password"), this.passwordInputField);
@@ -45,8 +49,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         JPanel buttons = new JPanel();
         this.signUp = new JButton("Sign up");
         buttons.add(this.signUp);
-        this.cancel = new JButton("Cancel");
-        buttons.add(this.cancel);
+        buttons.add(this.alreadyHaveAccount);
+        this.alreadyHaveAccount.addActionListener(this);
         this.signUp.addActionListener((evt) -> {
             if (evt.getSource().equals(this.signUp)) {
                 SignupState currentState = signupViewModel.getState();
@@ -55,7 +59,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         });
 
-        this.cancel.addActionListener(this);
         this.usernameInputField.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
                 SignupState currentState = signupViewModel.getState();
@@ -107,7 +110,16 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     }
 
     public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
+
+        if (evt.getSource() == this.signUp) {
+            // Sign up logic
+            SignupState currentState = signupViewModel.getState();
+            this.signupController.execute(currentState.getUsername(), currentState.getPassword(), currentState.getRepeatPassword());
+        } else if (evt.getSource() == this.alreadyHaveAccount) {
+            // Logic to switch to the login view
+            viewManagerModel.setActiveView("loginViewName"); // Replace with the actual name of the login view
+            viewManagerModel.firePropertyChanged();
+        }
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
@@ -136,7 +148,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         SignupController controller = new SignupController(mockSignupInteractor);
 
-        SignupView signupView = new SignupView(controller, viewModel);
+        // Create an instance of ViewManagerModel
+        ViewManagerModel viewManagerModel = new ViewManagerModel();
+
+        // Pass the newly created ViewManagerModel as the third argument
+        SignupView signupView = new SignupView(controller, viewModel, viewManagerModel);
 
         frame.add(signupView);
         frame.setVisible(true);
