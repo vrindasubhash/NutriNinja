@@ -17,7 +17,7 @@ public class GenerateMealPresenter implements GenerateMealOutputBoundary {
     }
     @Override
     public void prepareSuccessView(GenerateMealOutputData outputData) {
-        GenerateMealState generateMealState = generateMealViewModel.getLoginState();
+        GenerateMealState generateMealState = generateMealViewModel.getState();
 
         int index = (int)(Math.random() * 20);
         generateMealState.setMealName(outputData.getMeals()[index].getRecipe().getLabel());
@@ -29,8 +29,9 @@ public class GenerateMealPresenter implements GenerateMealOutputBoundary {
         generateMealState.setIngredientsLabel(Arrays.toString(outputData.getMeals()[index].getRecipe().getIngredientLines()));
         generateMealState.setRecipeSource(outputData.getMeals()[index].getRecipe().getLabel());
         generateMealState.setRecipeUrl(outputData.getMeals()[index].getRecipe().getUrl());
+        generateMealState.setServings(outputData.getMeals()[index].getRecipe().getServings());
 
-        this.generateMealViewModel.setState(generateMealViewModel.getLoginState());
+        this.generateMealViewModel.setState(generateMealViewModel.getState());
         generateMealViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(generateMealViewModel.getViewName());
@@ -40,7 +41,7 @@ public class GenerateMealPresenter implements GenerateMealOutputBoundary {
 
     @Override
     public void prepareFailView(String error) {
-        GenerateMealState generateMealState = generateMealViewModel.getLoginState();
+        GenerateMealState generateMealState = generateMealViewModel.getState();
         generateMealState.setAPIError(error);
         generateMealViewModel.firePropertyChanged();
     }
