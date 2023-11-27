@@ -82,8 +82,18 @@ public class GenerateMealState {
         this.APIError = APIError;
     }
 
+    public double getServings() {
+        return servings;
+    }
+
+    public void setServings(double servings) {
+        this.servings = servings;
+    }
+
 
     public String mealName = "";
+
+    public double servings = 0;
     public String imageUrl = ""; //URL of image
     public double mealCalories = 0;
     public double mealProtein = 0;
@@ -100,7 +110,7 @@ public class GenerateMealState {
     public String recipeSource = ""; //source of recipe
 
     //Error
-    public String APIError = "";
+    public String APIError = null;
 
     public GenerateMealState(GenerateMealState copy){
         this.mealName = copy.mealName;
@@ -113,6 +123,7 @@ public class GenerateMealState {
         this.recipeUrl = copy.recipeUrl;
         this.recipeSource =copy.recipeSource;
         this.APIError = copy.APIError;
+        this.servings = copy.servings;
     }
 
     //Explicit default constructor
