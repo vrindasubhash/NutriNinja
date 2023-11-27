@@ -21,7 +21,6 @@ public class LoginPresenter implements LoginOutputBoundary {
     @Override
     public void prepareSuccessView(LoginOutputData response) {
         // On success, switch to the save preferences view.
-        // To be implemented once the save preferences view is ready.
         SavePreferencesState savePreferencesState = savePreferencesViewModel.getState();
         savePreferencesState.setUsername(response.getUsername());
         savePreferencesState.setNutrientRange(response.getUserPreferences().getNutrientRange());
