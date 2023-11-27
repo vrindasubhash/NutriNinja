@@ -1,14 +1,8 @@
 package view;
 
-//import data_access.MemoryUserDataAccessObject;
-//import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginController;
-//import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
-//import use_case.login.LoginInputBoundary;
-//import use_case.login.LoginInputData;
-//import use_case.login.LoginInteractor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,28 +83,5 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     public void actionPerformed(ActionEvent e) {
 
     }
-
-//    public static void main(String[] args) {
-//        JFrame frame = new JFrame("Login Test");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(300, 200); // Set an appropriate size
-//
-//        LoginViewModel loginViewModel = new LoginViewModel();
-//        ViewManagerModel viewManagerModel = null;
-//        LoginPresenter loginPresenter = new LoginPresenter(viewManagerModel, loginViewModel);
-//
-//        MemoryUserDataAccessObject userDataAccessObject = new MemoryUserDataAccessObject();
-//
-//        // Implement a simple version of LoginInputBoundary for testing
-//        LoginInteractor loginInteractor = new LoginInteractor(userDataAccessObject,loginPresenter);
-//
-//        LoginController loginController = new LoginController(loginInteractor);
-//
-//        LoginView LoginView = new LoginView(loginViewModel, loginController);
-//
-//        frame.add(LoginView);
-//        frame.setVisible(true);
-//    }
-
 
 }
