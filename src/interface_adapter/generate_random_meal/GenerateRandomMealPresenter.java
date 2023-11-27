@@ -35,14 +35,14 @@ public class GenerateRandomMealPresenter implements GenerateMealByIDOutputBounda
         this.generateMealViewModel.setState(generateMealViewModel.getState());
         generateMealViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(generateMealViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void prepareFailView(String error) {
         GenerateMealState generateMealState = generateMealViewModel.getState();
         generateMealState.setAPIError(error);
+
+        this.generateMealViewModel.setState(generateMealViewModel.getState());
         generateMealViewModel.firePropertyChanged();
     }
 }
