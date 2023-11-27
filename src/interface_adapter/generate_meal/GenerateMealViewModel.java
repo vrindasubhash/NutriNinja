@@ -1,11 +1,9 @@
 package interface_adapter.generate_meal;
 
 import interface_adapter.ViewModel;
-import use_case.generate_meal.GenerateMealOutputData;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.Arrays;
 
 public class GenerateMealViewModel extends ViewModel {
 
@@ -13,6 +11,8 @@ public class GenerateMealViewModel extends ViewModel {
 
 
     //HEADERS
+    public static final String MEAL_HEADER = "Meal: ";
+    public static final String SERVINGS_HEADER = "Servings: ";
     public static final String CALORIES_HEADER = "Calories: ";
     public static final String PROTEIN_HEADER = "Protein: ";
     public static final String CARBS_HEADER = "Carbs: ";
@@ -24,6 +24,8 @@ public class GenerateMealViewModel extends ViewModel {
 
 
     //LABELS
+    public static final String MEAL_LABEL = "Meal: ";
+    public static final String SERVINGS_LABEL = "Servings: ";
     public static final String CALORIES_LABEL = "";
     public static final String PROTEIN_LABEL = "";
     public static final String CARBS_LABEL = "";
@@ -39,7 +41,7 @@ public class GenerateMealViewModel extends ViewModel {
 
     private GenerateMealState state= new GenerateMealState();
 
-    public GenerateMealState getLoginState(){
+    public GenerateMealState getState(){
         return state;
     }
     public void setState(GenerateMealState state){
