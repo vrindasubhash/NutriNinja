@@ -1,13 +1,10 @@
 package data_access;
 
-import entity.NutrientRange;
-import entity.User;
+import entity.*;
 
 import java.io.*;
 import java.util.*;
 
-import entity.UserFactory;
-import entity.UserPreferences;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.save_preferences.SavePreferencesDataAccessInterface;
 import use_case.signup.SignupDataAccessInterface;
@@ -15,6 +12,11 @@ import use_case.signup.SignupDataAccessInterface;
 public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
         SignupDataAccessInterface,
         SavePreferencesDataAccessInterface {
+
+    public static void main(String[] args) throws IOException {
+        FileUserDataAccessObject test = new FileUserDataAccessObject("./test.csv", new CommonUserFactory());
+    }
+
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();  // Mapping of column name to index in row array
     private final Map<String, User> accounts = new HashMap<>();  // Mapping of username to user object
