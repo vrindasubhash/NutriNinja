@@ -159,13 +159,16 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(backButton)) {
-                            SavePreferencesState preferencesState = savePreferencesViewModel.getState();
-                            savePreferencesViewModel.setState(preferencesState);
-                            savePreferencesViewModel.firePropertyChanged();
-
-
-                            viewManagerModel.setActiveView(savePreferencesViewModel.getViewName());
-                            viewManagerModel.firePropertyChanged();
+                            SavePreferencesState currentState = savePreferencesViewModel.getState();
+                            savePreferencesController.execute(
+                                    currentState.getNutrientRange().getCalorieRange(),
+                                    currentState.getNutrientRange().getFatRange(),
+                                    currentState.getNutrientRange().getProteinRange(),
+                                    currentState.getNutrientRange().getCarbRange(),
+                                    currentState.getHealthPreferences(),
+                                    currentState.getDishType(),
+                                    currentState.getUsername()
+                            );
                         }
                     }
                 }
@@ -190,7 +193,6 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
                                     currentState.getNutrientRange().getFatRange().getLowerBound(),
                                     currentState.getNutrientRange().getFatRange().getUpperBound()
                             );
-                            viewManagerModel.firePropertyChanged();
 
                         }
                     }
