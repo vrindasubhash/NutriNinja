@@ -14,7 +14,7 @@ public class SignupViewModel extends ViewModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public SignupViewModel() {
-        super("sign up");
+        super("Signup");
     }
 
     public void setState(SignupState state) {

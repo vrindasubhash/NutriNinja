@@ -42,7 +42,7 @@ public class GenerateMealViewModel extends ViewModel {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public GenerateMealViewModel(String viewName) {
+    public GenerateMealViewModel() {
         super("Generate Meal");
     }
 

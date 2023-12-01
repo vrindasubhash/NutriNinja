@@ -6,7 +6,7 @@ import use_case.signup.SignupOutputBoundary;
 import use_case.signup.SignupOutputData;
 import interface_adapter.login.LoginViewModel;
 
-public class SignupPresenter implements SignupOutputBoundary {
+public class    SignupPresenter implements SignupOutputBoundary {
     private final SignupViewModel signupViewModel;
     private final LoginViewModel loginViewModel;
     private ViewManagerModel viewManagerModel;

@@ -23,7 +23,7 @@ import java.beans.PropertyChangeListener;
 
 public class PreferencesView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public static final String viewName = "Preferences";
+    public final String viewName = "Preferences";
 
     JLabel username;
 
