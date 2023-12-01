@@ -23,7 +23,9 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.MalformedInputException;
 import java.util.List;
 
 public class GenerateMealView extends JPanel implements ActionListener, PropertyChangeListener {
@@ -72,7 +74,11 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
 
         JPanel picturePanel = new JPanel();
         JLabel pictureLabel = new JLabel();
-        pictureLabel.setIcon(new ImageIcon(ImageIO.read(new URL(generateMealViewModel.getState().getImageURL()))));
+        try {
+            pictureLabel.setIcon(new ImageIcon(ImageIO.read(new URL(generateMealViewModel.getState().getImageURL()))));
+        } catch (MalformedURLException e){
+            pictureLabel.setText("No Image Available");
+        }
         picturePanel.add(pictureLabel);
 
         JPanel infoPanel = new JPanel();
