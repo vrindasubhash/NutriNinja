@@ -1,13 +1,10 @@
 package data_access;
 
-import entity.NutrientRange;
-import entity.User;
+import entity.*;
 
 import java.io.*;
 import java.util.*;
 
-import entity.UserFactory;
-import entity.UserPreferences;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.save_preferences.SavePreferencesDataAccessInterface;
 import use_case.signup.SignupDataAccessInterface;
@@ -40,13 +37,13 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
 
                 String row;
                 while ((row = reader.readLine()) != null) {
-                    String[] col = row.split(", ");
+                    String[] col = row.split(",");
 
                     // Getting user attributes from col
                     String username = col[headers.get("username")];
                     String password = col[headers.get("password")];
-                    List<String> healthPreferences = Arrays.asList(col[headers.get("healthPreferences")].split("/"));
-                    List<String> dishType = Arrays.asList(col[headers.get("dishType")].split("/"));
+                    List<String> healthPreferences = new ArrayList<>(Arrays.asList(col[headers.get("healthPreferences")].split("/")));
+                    List<String> dishType = new ArrayList<>(Arrays.asList(col[headers.get("dishType")].split("/")));
                     int[] calRange = convertStringArrToNumArr(col[headers.get("calRange")].split("-"));
                     int[] fatRange = convertStringArrToNumArr(col[headers.get("fatRange")].split("-"));
                     int[] proteinRange = convertStringArrToNumArr(col[headers.get("proteinRange")].split("-"));
