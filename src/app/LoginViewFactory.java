@@ -1,4 +1,4 @@
-package app.custom_data;
+package app;
 
 public class LoginViewFactory {
 }
