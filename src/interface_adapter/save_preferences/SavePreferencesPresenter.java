@@ -24,6 +24,9 @@ public class SavePreferencesPresenter implements SavePreferencesOutputBoundary {
         saveState.setNutrientRange(response.getUserPreferences().getNutrientRange());
         this.saveViewModel.setState(saveState);
         this.saveViewModel.firePropertyChanged();
+
+        this.viewManagerModel.setActiveView(saveViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 }
 
