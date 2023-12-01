@@ -7,6 +7,8 @@ import interface_adapter.generate_meal.GenerateMealViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.save_preferences.SavePreferencesViewModel;
 import interface_adapter.signup.SignupViewModel;
+import view.LoginView;
+import view.SignupView;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -40,6 +42,12 @@ public class Main {
         }
 
         // Creating views
+        SignupView signupView = SignupViewFactory.create(viewManagerModel, loginViewModel, signupViewModel, dao);
+        views.add(signupView, signupView.viewName);
+
+        LoginView loginView = LoginViewFactory.create(viewManagerModel, loginViewModel, savePreferencesViewModel, dao);
+        views.add(loginView, loginView.viewName);
+
 
 
         viewManagerModel.setActiveView(signupView.viewName);
