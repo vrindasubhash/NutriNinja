@@ -35,20 +35,15 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
     public final GenerateMealViewModel generateMealViewModel;
     public final GenerateMealController generateMealController;
     public final SavePreferencesController savePreferencesController;
-
-
-    private final ViewManagerModel viewManagerModel;
     public final SavePreferencesViewModel savePreferncesViewModel;
     public final GenerateRandomMealController generateRandomMealController;
-    public GenerateMealView(ViewManagerModel viewmanagerModel,
-                            GenerateMealViewModel generateMealViewModel,
+    public GenerateMealView(GenerateMealViewModel generateMealViewModel,
                             SavePreferencesViewModel savePreferencesViewModel,
                             GenerateMealController generateMealController,
                             SavePreferencesController savePreferencesController,
                             GenerateRandomMealController generateRandomMealController) throws IOException{
 
 
-        this.viewManagerModel = viewmanagerModel;
         this.generateMealViewModel = generateMealViewModel;
         this.generateMealController = generateMealController;
         this.savePreferencesController = savePreferencesController;
@@ -177,7 +172,6 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(regenerateButton)) {
-                            viewManagerModel.setActiveView("Generate Meal");
                             SavePreferencesState currentState = savePreferencesViewModel.getState();
                             generateMealController.execute(
                                     currentState.getHealthPreferences(),
@@ -201,9 +195,7 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
         feelingLuckyButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(feelingLuckyButton)) {
-                            viewManagerModel.setActiveView("Generate Meal");
-                            viewManagerModel.firePropertyChanged();
+                        if (evt.getSource().equals(feelingLuckyButton)){
                             generateRandomMealController.execute();
                         }
                     }
@@ -220,13 +212,17 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
         this.add(recipeSourcePanel);
         this.add(recipeLinkPanel);
         this.add(buttonsPanel);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+
+
     }
 }
