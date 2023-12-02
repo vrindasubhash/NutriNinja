@@ -29,7 +29,7 @@ public class MealViewFactory {
 
         try {
             GenerateMealController generateMealController = createGenerateMealUseCase(viewManagerModel, generateMealViewModel);
-            SavePreferencesController savePreferencesController = createSavePreferencesUseCase(viewManagerModel, savePreferencesViewModel, savePreferencesDataAccessObject);
+            SavePreferencesController savePreferencesController = PreferencesViewFactory.createSavePreferencesUseCase(viewManagerModel, savePreferencesViewModel, savePreferencesDataAccessObject);
             GenerateRandomMealController generateRandomMealController = createGenerateRandomMealUseCase(viewManagerModel, generateMealViewModel);
             return new GenerateMealView(generateMealViewModel, savePreferencesViewModel, generateMealController, savePreferencesController, generateRandomMealController);
 

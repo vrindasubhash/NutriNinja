@@ -35,8 +35,8 @@ public class PreferencesViewFactory {
 
         try {
             SavePreferencesController savePreferencesController = createSavePreferencesUseCase(viewManagerModel, savePreferencesViewModel,savePreferencesDataAccessObject);
-            GenerateMealController generateMealController = createGenerateMealUseCase(viewManagerModel, generateMealViewModel);
-            GenerateRandomMealController generateRandomMealController = createGenerateRandomMealUseCase(viewManagerModel, generateMealViewModel);
+            GenerateMealController generateMealController = MealViewFactory.createGenerateMealUseCase(viewManagerModel, generateMealViewModel);
+            GenerateRandomMealController generateRandomMealController = MealViewFactory.createGenerateRandomMealUseCase(viewManagerModel, generateMealViewModel);
             return new PreferencesView(savePreferencesViewModel, savePreferencesController, generateMealController, generateRandomMealController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -45,7 +45,7 @@ public class PreferencesViewFactory {
         return null;
     }
 
-    private static SavePreferencesController createSavePreferencesUseCase(
+    public static SavePreferencesController createSavePreferencesUseCase(
             ViewManagerModel viewManagerModel,
             SavePreferencesViewModel savePreferencesViewModel,
             SavePreferencesDataAccessInterface savePreferencesDataAccessObject) throws IOException {
@@ -58,29 +58,6 @@ public class PreferencesViewFactory {
         return new SavePreferencesController(savePreferencesInteractor);
     }
 
-    private static GenerateMealController createGenerateMealUseCase(
-            ViewManagerModel viewManagerModel,
-            GenerateMealViewModel generateMealViewModel) throws IOException {
-
-        GenerateMealOutputBoundary generateMealOutputBoundary = new GenerateMealPresenter(viewManagerModel, generateMealViewModel);
-
-        GenerateMealInputBoundary generateMealInteractor = new GenerateMealUseCaseInteractor(
-                generateMealOutputBoundary);
-
-        return new GenerateMealController(generateMealInteractor);
-    }
-
-    private static GenerateRandomMealController createGenerateRandomMealUseCase(
-            ViewManagerModel viewManagerModel,
-            GenerateMealViewModel generateMealViewModel) throws IOException {
-
-        GenerateMealByIDOutputBoundary generateRandomMealOutputBoundary = new GenerateRandomMealPresenter(viewManagerModel, generateMealViewModel);
-
-        GenerateMealByIDInputBoundary generateRandomMealInteractor = new GenerateMealByIDInteractor(
-                generateRandomMealOutputBoundary);
-
-        return new GenerateRandomMealController(generateRandomMealInteractor);
-    }
 }
 
 
