@@ -36,20 +36,15 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
     public final GenerateMealViewModel generateMealViewModel;
     public final GenerateMealController generateMealController;
     public final SavePreferencesController savePreferencesController;
-
-
-    private final ViewManagerModel viewManagerModel;
     public final SavePreferencesViewModel savePreferncesViewModel;
     public final GenerateRandomMealController generateRandomMealController;
-    public GenerateMealView(ViewManagerModel viewmanagerModel,
-                            GenerateMealViewModel generateMealViewModel,
+    public GenerateMealView(GenerateMealViewModel generateMealViewModel,
                             SavePreferencesViewModel savePreferencesViewModel,
                             GenerateMealController generateMealController,
                             SavePreferencesController savePreferencesController,
                             GenerateRandomMealController generateRandomMealController) throws IOException{
 
 
-        this.viewManagerModel = viewmanagerModel;
         this.generateMealViewModel = generateMealViewModel;
         this.generateMealController = generateMealController;
         this.savePreferencesController = savePreferencesController;
@@ -178,7 +173,6 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(regenerateButton)) {
-                            viewManagerModel.setActiveView("Generate Meal");
                             SavePreferencesState currentState = savePreferencesViewModel.getState();
                             generateMealController.execute(
                                     currentState.getHealthPreferences(),
@@ -202,9 +196,7 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
         feelingLuckyButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(feelingLuckyButton)) {
-                            viewManagerModel.setActiveView("Generate Meal");
-                            viewManagerModel.firePropertyChanged();
+                        if (evt.getSource().equals(feelingLuckyButton)){
                             generateRandomMealController.execute();
                         }
                     }
@@ -233,65 +225,5 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
     public void propertyChange(PropertyChangeEvent evt) {
 
 
-    }
-
-
-
-
-
-    public static void main(String[] args) throws IOException{
-        JFrame frame = new JFrame("Preferences Test");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 1000);
-
-
-
-        GenerateMealInputBoundary fakeGenerateMealInteractor = new GenerateMealInputBoundary() {
-            @Override
-            public void execute(GenerateMealInputData inputData) {
-
-                System.out.println("Generate Meal: " + inputData);
-            }
-
-        };
-
-        GenerateMealByIDInputBoundary fakeGenerateMealByIDInteractor = new GenerateMealByIDInputBoundary() {
-            @Override
-            public void execute(GenerateMealByIDInputData inputData) {
-                System.out.println("Generate Random Meal: " + inputData);
-            }
-        };
-
-
-        SavePreferencesInputBoundary fakeSavePreferencesInteractor = new SavePreferencesInputBoundary() {
-            @Override
-            public void execute(SavePreferencesInputData inputData) {
-                System.out.println("Save Preferences: " + inputData);
-            }
-        };
-
-        GenerateMealInputData inputData = new GenerateMealInputData(java.util.List.of("peanut-free"),
-                java.util.List.of("Lunch"),
-                List.of("Main course"),
-                new Range<>(0, 300), //Cal range(per serving),
-                new Range<>(0, 100), //Carb range(per serving)
-                new Range<>(0, 100), //Protein range(per serving)
-                new Range<>(0, 40)); //Fat range(per serving)
-
-
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
-        GenerateMealViewModel generateMealViewModel = new GenerateMealViewModel(viewName);
-        SavePreferencesViewModel savePreferencesViewModel = new SavePreferencesViewModel("Preferences");
-        GenerateMealController generateMealController = new GenerateMealController(fakeGenerateMealInteractor);
-        //generateMealController.execute(List.of("peanut-free"),List.of("Lunch"),List.of("Main course"),0,300,0,100,0,100,0,40);
-        SavePreferencesController savePreferencesController = new SavePreferencesController(fakeSavePreferencesInteractor);
-        GenerateRandomMealController generateRandomMealController1 = new GenerateRandomMealController(fakeGenerateMealByIDInteractor);
-
-
-
-        GenerateMealView generateMealView = new GenerateMealView(viewManagerModel, generateMealViewModel,savePreferencesViewModel,generateMealController,savePreferencesController,generateRandomMealController1);
-
-        frame.add(generateMealView);
-        frame.setVisible(true);
     }
 }
