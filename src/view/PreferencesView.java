@@ -440,40 +440,4 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         SavePreferencesState state = (SavePreferencesState) evt.getNewValue();
         username.setText(state.getUsername());
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Preferences Test");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 1000);
-
-        SavePreferencesViewModel viewModel = new SavePreferencesViewModel(viewName);
-        SavePreferencesInputBoundary fakeSavePreferencesInteractor = new SavePreferencesInputBoundary() {
-            @Override
-            public void execute(SavePreferencesInputData savePreferencesInputData) {
-                System.out.println("Preferences: " + savePreferencesInputData);
-            }
-        };
-
-        GenerateMealInputBoundary fakeGenerateMealInteractor = new GenerateMealInputBoundary() {
-            @Override
-            public void execute(GenerateMealInputData inputData) {
-                System.out.println("Generate Meal: " + inputData);
-            }
-        };
-
-        GenerateMealByIDInputBoundary fakeGenerateMealByIDInteractor = new GenerateMealByIDInputBoundary() {
-            @Override
-            public void execute(GenerateMealByIDInputData inputData) {
-                System.out.println("Generate Random Meal: " + inputData);
-            }
-        };
-
-        SavePreferencesController savePreferencesController1 = new SavePreferencesController(fakeSavePreferencesInteractor);
-        GenerateMealController generateMealController1 = new GenerateMealController(fakeGenerateMealInteractor);
-        GenerateRandomMealController generateRandomMealController1 = new GenerateRandomMealController(fakeGenerateMealByIDInteractor);
-        PreferencesView preferencesView = new PreferencesView(viewModel, savePreferencesController1, generateMealController1, generateRandomMealController1);
-
-        frame.add(preferencesView);
-        frame.setVisible(true);
-    }
 }
