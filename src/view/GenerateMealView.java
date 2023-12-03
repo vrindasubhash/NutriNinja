@@ -1,19 +1,13 @@
 package view;
 
-import app.custom_data.Range;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.generate_meal.GenerateMealController;
+import interface_adapter.generate_meal.GenerateMealState;
 import interface_adapter.generate_meal.GenerateMealViewModel;
 import interface_adapter.generate_random_meal.GenerateRandomMealController;
 import interface_adapter.save_preferences.SavePreferencesController;
 import interface_adapter.save_preferences.SavePreferencesState;
 import interface_adapter.save_preferences.SavePreferencesViewModel;
-import use_case.generate_meal.GenerateMealInputBoundary;
-import use_case.generate_meal.GenerateMealInputData;
-import use_case.generate_meal_by_id.GenerateMealByIDInputBoundary;
-import use_case.generate_meal_by_id.GenerateMealByIDInputData;
-import use_case.save_preferences.SavePreferencesInputBoundary;
-import use_case.save_preferences.SavePreferencesInputData;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,34 +17,55 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.MalformedInputException;
-import java.util.List;
 
 public class GenerateMealView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "Generate Meal";
 
     public final GenerateMealViewModel generateMealViewModel;
-    public final GenerateMealController generateMealController;
-    public final SavePreferencesController savePreferencesController;
-    public final SavePreferencesViewModel savePreferncesViewModel;
-    public final GenerateRandomMealController generateRandomMealController;
-    public GenerateMealView(GenerateMealViewModel generateMealViewModel,
-                            SavePreferencesViewModel savePreferencesViewModel,
-                            GenerateMealController generateMealController,
-                            SavePreferencesController savePreferencesController,
-                            GenerateRandomMealController generateRandomMealController) throws IOException{
+    public GenerateMealController generateMealController;
+    public SavePreferencesController savePreferencesController;
+    public final SavePreferencesViewModel savePreferencesViewModel;
+    public GenerateRandomMealController generateRandomMealController;
+
+    public ViewManagerModel viewManagerModel;
 
 
-        this.generateMealViewModel = generateMealViewModel;
-        this.generateMealController = generateMealController;
-        this.savePreferencesController = savePreferencesController;
-        this.generateRandomMealController = generateRandomMealController;
-        this.savePreferncesViewModel = savePreferencesViewModel;
+    public JLabel mealSuggested = new JLabel("");
+    public JLabel imageURL = new JLabel("");
+    public JLabel servings = new JLabel("");
+    public JLabel calories = new JLabel("");
+    public JLabel protein = new JLabel("");
+    public JLabel carbs = new JLabel("");
+    public JLabel fat = new JLabel("");
+    public JLabel ingredients = new JLabel("");
+    public JLabel recipeSource = new JLabel("");
+    public JLabel recipeURL = new JLabel("");
+
+    public JLabel pictureLabel = new JLabel();
+
+    public JLabel ingredientsFormatted = new JLabel();
+
+
+
+    public GenerateMealView(ViewManagerModel viewManagerModel_,
+                            GenerateMealViewModel generateMealViewModel_,
+                            SavePreferencesViewModel savePreferencesViewModel_,
+                            GenerateMealController generateMealController_,
+                            SavePreferencesController savePreferencesController_,
+                            GenerateRandomMealController generateRandomMealController_) throws IOException{
+
+        this.viewManagerModel = viewManagerModel_;
+        this.generateMealViewModel = generateMealViewModel_;
+        this.generateMealController = generateMealController_;
+        this.savePreferencesController = savePreferencesController_;
+        this.generateRandomMealController = generateRandomMealController_;
+        this.savePreferencesViewModel = savePreferencesViewModel_;
         generateMealViewModel.addPropertyChangeListener(this);
         savePreferencesViewModel.addPropertyChangeListener(this);
+
+
 
         Font f1 = new Font("Lucida Grande", Font.PLAIN, 13);
         Font f2 = new Font("Lucida Grande", Font.BOLD, 15);
@@ -64,15 +79,13 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
         JLabel mealSuggestedHeader = new JLabel(GenerateMealViewModel.MEAL_HEADER);
         mealSuggestedHeader.setFont(f2);
         mealSuggestedPanel.add(mealSuggestedHeader);
-        mealSuggestedPanel.add(new JLabel(generateMealViewModel.getState().getMealName()));
+
+        mealSuggestedPanel.add(mealSuggested);
+
 
         JPanel picturePanel = new JPanel();
-        JLabel pictureLabel = new JLabel();
-        try {
-            pictureLabel.setIcon(new ImageIcon(ImageIO.read(new URL(generateMealViewModel.getState().getImageURL()))));
-        } catch (MalformedURLException e){
-            pictureLabel.setText("No Image Available");
-        }
+
+
         picturePanel.add(pictureLabel);
 
         JPanel infoPanel = new JPanel();
@@ -82,31 +95,31 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
         JLabel servingsHeader = new JLabel(GenerateMealViewModel.SERVINGS_HEADER);
         servingsHeader.setFont(f2);
         servingsPanel.add(servingsHeader);
-        servingsPanel.add(new JLabel(String.valueOf(generateMealViewModel.getState().getServings())));
+        servingsPanel.add(servings);
 
         JPanel caloriesPanel= new JPanel();
         JLabel caloriesHeader = new JLabel(GenerateMealViewModel.CALORIES_HEADER);
         caloriesHeader.setFont(f2);
         caloriesPanel.add(caloriesHeader);
-        caloriesPanel.add(new JLabel(String.valueOf(generateMealViewModel.getState().getMealCalories())));
+        caloriesPanel.add(calories);
 
         JPanel proteinPanel = new JPanel();
         JLabel proteinHeader = new JLabel(GenerateMealViewModel.PROTEIN_HEADER);
         proteinHeader.setFont(f2);
         proteinPanel.add(proteinHeader);
-        proteinPanel.add(new JLabel(String.valueOf(generateMealViewModel.getState().getMealProtein())));
+        proteinPanel.add(protein);
 
         JPanel carbsPanel = new JPanel();
         JLabel carbsHeader = new JLabel(GenerateMealViewModel.CARBS_HEADER);
         carbsHeader.setFont(f2);
         carbsPanel.add(carbsHeader);
-        carbsPanel.add(new JLabel(String.valueOf(generateMealViewModel.getState().getMealCarbs())));
+        carbsPanel.add(carbs);
 
         JPanel fatPanel = new JPanel();
         JLabel fatHeader = new JLabel(GenerateMealViewModel.FAT_HEADER);
         fatHeader.setFont(f2);
         fatPanel.add(fatHeader);
-        fatPanel.add(new JLabel(String.valueOf(generateMealViewModel.getState().getMealFat())));
+        fatPanel.add(fat);
 
         infoPanel.add(servingsPanel);
         infoPanel.add(caloriesPanel);
@@ -115,25 +128,27 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
         infoPanel.add(fatPanel);
 
 
-
         JPanel ingredientsPanel = new JPanel();
         JLabel ingredientHeader = new JLabel(GenerateMealViewModel.INGREDIENTS_HEADER);
         ingredientHeader.setFont(f2);
         ingredientsPanel.add(ingredientHeader);
-        ingredientsPanel.add(new JLabel(generateMealViewModel.getState().getIngredientsLabel()));
+
+        ingredientsFormatted.setFont(f1);
+        ingredientsPanel.add(ingredientsFormatted);
+
 
 
         JPanel recipeSourcePanel = new JPanel();
         JLabel recipeSourceHeader = new JLabel(GenerateMealViewModel.RECIPE_SOURCE_HEADER);
         recipeSourceHeader.setFont(f2);
         recipeSourcePanel.add(recipeSourceHeader);
-        recipeSourcePanel.add(new JLabel(generateMealViewModel.getState().getRecipeSource()));
+        recipeSourcePanel.add(recipeSource);
 
         JPanel recipeLinkPanel = new JPanel();
         JLabel recipeLinkHeader = new JLabel(GenerateMealViewModel.RECIPE_LINK_HEADER);
         recipeLinkHeader.setFont(f2);
         recipeLinkPanel.add(recipeLinkHeader);
-        recipeLinkPanel.add(new JLabel(generateMealViewModel.getState().getRecipeURL()));
+        recipeLinkPanel.add(recipeURL);
 
 
         JPanel buttonsPanel = new JPanel();
@@ -173,6 +188,7 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(regenerateButton)) {
                             SavePreferencesState currentState = savePreferencesViewModel.getState();
+
                             generateMealController.execute(
                                     currentState.getHealthPreferences(),
                                     currentState.getMealType(),
@@ -222,7 +238,35 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getNewValue().getClass().equals(GenerateMealState.class)){
+            GenerateMealState state = (GenerateMealState) evt.getNewValue();
+            setFields(state);
+        }
 
+    }
+
+    private void setFields (GenerateMealState state){
+        mealSuggested.setText(state.getMealName());
+        imageURL.setText(state.getImageURL());
+        try {
+            pictureLabel.setIcon(new ImageIcon(ImageIO.read(new URL(imageURL.getText()))));
+
+        } catch (Exception e){
+            pictureLabel.setText("No Image Available");
+        }
+        servings.setText(String.valueOf(state.getServings()));
+        calories.setText(String.valueOf(Math.round(state.getMealCalories() / state.getServings())));
+        protein.setText(String.valueOf(Math.round(state.getMealProtein() / state.getServings())));
+        carbs.setText(String.valueOf(Math.round(state.getMealCarbs() / state.getServings())));
+        fat.setText(String.valueOf(Math.round(state.getMealFat() / state.getServings())));
+
+        ingredients.setText(state.getIngredientsLabel());
+
+        String ingredientsFormat = "<html>" + ingredients.getText().replace(",", "<br/>").substring(1,ingredients.getText().length()-1 ) + "</html>";
+        ingredientsFormatted.setText(ingredientsFormat);
+
+        recipeSource.setText(state.getRecipeSource());
+        recipeURL.setText(state.getRecipeURL());
 
     }
 }
