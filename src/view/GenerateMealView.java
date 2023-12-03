@@ -29,7 +29,6 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
     public final SavePreferencesViewModel savePreferencesViewModel;
     public GenerateRandomMealController generateRandomMealController;
 
-    public ViewManagerModel viewManagerModel;
 
 
     public JLabel mealSuggested = new JLabel("");
@@ -49,14 +48,12 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
 
 
 
-    public GenerateMealView(ViewManagerModel viewManagerModel_,
-                            GenerateMealViewModel generateMealViewModel_,
+    public GenerateMealView(GenerateMealViewModel generateMealViewModel_,
                             SavePreferencesViewModel savePreferencesViewModel_,
                             GenerateMealController generateMealController_,
                             SavePreferencesController savePreferencesController_,
                             GenerateRandomMealController generateRandomMealController_) throws IOException{
 
-        this.viewManagerModel = viewManagerModel_;
         this.generateMealViewModel = generateMealViewModel_;
         this.generateMealController = generateMealController_;
         this.savePreferencesController = savePreferencesController_;
