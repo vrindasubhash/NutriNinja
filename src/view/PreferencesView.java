@@ -5,12 +5,6 @@ import interface_adapter.generate_random_meal.GenerateRandomMealController;
 import interface_adapter.save_preferences.SavePreferencesController;
 import interface_adapter.save_preferences.SavePreferencesState;
 import interface_adapter.save_preferences.SavePreferencesViewModel;
-import use_case.generate_meal.GenerateMealInputBoundary;
-import use_case.generate_meal.GenerateMealInputData;
-import use_case.generate_meal_by_id.GenerateMealByIDInputBoundary;
-import use_case.generate_meal_by_id.GenerateMealByIDInputData;
-import use_case.save_preferences.SavePreferencesInputBoundary;
-import use_case.save_preferences.SavePreferencesInputData;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -24,9 +18,9 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
 
     public final String viewName = "Preferences";
 
-    final JButton savePreferences;
-    final JButton generateMeal;
-    final JButton feelingLucky;
+    public final JButton savePreferences;
+    public final JButton generateMeal;
+    public final JButton feelingLucky;
 
     JTextField minimumCalorieInputField = new JTextField(15);
     private final JLabel minimumCalorieErrorField = new JLabel();
@@ -150,6 +144,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                                     currentState.getUsername()
                             );
                             successLabel.setText("Preferences Saved!");
+                            successLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
                         }
                     }
                 }
@@ -412,7 +407,6 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                 res.add(i);
             }
         }
-
         return res.stream().mapToInt(Integer::intValue).toArray();
     }
 
@@ -421,6 +415,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         if (evt.getNewValue().getClass().equals(SavePreferencesState.class)){
             SavePreferencesState state = (SavePreferencesState) evt.getNewValue();
             usernameInfo.setText("Currently logged in: " + state.getUsername());
+            usernameInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
             minimumCalorieInputField.setText(state.getNutrientRange().getCalorieRange().getLowerBound().toString());
             maximumCalorieInputField.setText(state.getNutrientRange().getCalorieRange().getUpperBound().toString());
             minimumFatInputField.setText(state.getNutrientRange().getFatRange().getLowerBound().toString());
@@ -431,7 +426,6 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
             maximumCarbInputField.setText(state.getNutrientRange().getCarbRange().getUpperBound().toString());
             healthPreferencesInputField.setSelectedIndices(get_indices(state.getHealthPreferences(), healthPreferencesOptions));
             dishTypeInputField.setSelectedIndices(get_indices(state.getDishType(), dishTypeOptions));
-            mealTypeInputField.setSelectedIndices(get_indices(state.getMealType(), mealTypeOptions));
         }
 
     }
