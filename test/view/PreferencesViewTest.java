@@ -1,6 +1,7 @@
 package view;
 
 import app.PreferencesViewFactory;
+import app.custom_data.Range;
 import data_access.FileUserDataAccessObject;
 import entity.*;
 import interface_adapter.ViewManagerModel;
@@ -9,6 +10,7 @@ import interface_adapter.save_preferences.SavePreferencesViewModel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import entity.NutrientRange;
 
 import javax.swing.*;
 
@@ -17,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -27,7 +28,7 @@ public class PreferencesViewTest {
     GenerateMealViewModel generateMealViewModel = new GenerateMealViewModel();
     ViewManagerModel viewManagerModel = new ViewManagerModel();
     PreferencesView preferencesView;
-    User user;
+    User user = new CommonUserFactory().create("user", "pass");
 
     @Before
     public void setUp(){
@@ -37,15 +38,13 @@ public class PreferencesViewTest {
         JPanel views = new JPanel(cardLayout);
         app.add(views);
 
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
-        new ViewManager(views, cardLayout, viewManagerModel);
-
         FileUserDataAccessObject dao;
         try {
             dao = new FileUserDataAccessObject("test_preferences_view.csv", new CommonUserFactory());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        dao.saveUser(user);
 
         preferencesView = PreferencesViewFactory.create(viewManagerModel, savePreferencesViewModel, generateMealViewModel, dao);
         views.add(preferencesView, preferencesView.viewName);
@@ -67,10 +66,9 @@ public class PreferencesViewTest {
     }
 
     @Test
-    public void testPreferences() {
-//        user.setUsername("user");
-//        user.setPassword("pass");
-//        user.setUserPreferences(100, );
+    public void testSavePreferences() {
+        user.setUserPreferences(new UserPreferences(new NutrientRange(new Range<>(0, 500), new Range<>(0, 500), new Range<>(0, 500), new Range<>(0, 500)), new ArrayList<>(), new ArrayList<>()));
+        savePreferencesViewModel.getState().setUsername("user");
         savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().setLowerBound(100);
         savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().setUpperBound(200);
         savePreferencesViewModel.getState().getNutrientRange().getFatRange().setLowerBound(100);
@@ -83,14 +81,17 @@ public class PreferencesViewTest {
         savePreferencesViewModel.getState().setDishType(new ArrayList<>(Arrays.asList("salad")));
         savePreferencesViewModel.getState().setMealType(new ArrayList<>(Arrays.asList("lunch")));
         preferencesView.savePreferences.doClick();
-        assertEquals(Optional.of(100), savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().getLowerBound());
-        assertEquals(Optional.of(200), savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().getUpperBound());
-        assertEquals(Optional.of(100), savePreferencesViewModel.getState().getNutrientRange().getFatRange().getLowerBound());
-        assertEquals(Optional.of(200), savePreferencesViewModel.getState().getNutrientRange().getFatRange().getUpperBound());
-        assertEquals(Optional.of(100), savePreferencesViewModel.getState().getNutrientRange().getProteinRange().getLowerBound());
-        assertEquals(Optional.of(200), savePreferencesViewModel.getState().getNutrientRange().getProteinRange().getUpperBound());
-        assertEquals(Optional.of(100), savePreferencesViewModel.getState().getNutrientRange().getCarbRange().getLowerBound());
-        assertEquals(Optional.of(200), savePreferencesViewModel.getState().getNutrientRange().getCarbRange().getUpperBound());
+        assertEquals("user", savePreferencesViewModel.getState().getUsername());
+        assert 100 == savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().getLowerBound();
+        assert 200 == savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().getUpperBound();
+        assert 100 == savePreferencesViewModel.getState().getNutrientRange().getFatRange().getLowerBound();
+        assert 200 == savePreferencesViewModel.getState().getNutrientRange().getFatRange().getUpperBound();
+        assert 100 == savePreferencesViewModel.getState().getNutrientRange().getProteinRange().getLowerBound();
+        assert 200 == savePreferencesViewModel.getState().getNutrientRange().getProteinRange().getUpperBound();
+        assert 100 == savePreferencesViewModel.getState().getNutrientRange().getCarbRange().getLowerBound();
+        assert 200 == savePreferencesViewModel.getState().getNutrientRange().getCarbRange().getUpperBound();
+        assertEquals("Preferences", viewManagerModel.getActiveView());
     }
+
 
 }

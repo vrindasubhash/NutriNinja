@@ -149,7 +149,6 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                     }
                 }
         );
-
         generateMeal.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
