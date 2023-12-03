@@ -107,8 +107,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.add(buttons);
     }
 
-    public void actionPerformed(ActionEvent evt, SignupOutputData response) {
-
+    @Override
+    public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == this.signUp) {
             // Sign up logic
             SignupState currentState = signupViewModel.getState();
@@ -116,7 +116,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         } else if (evt.getSource() == this.alreadyHaveAccount) {
             // Logic to switch to the login view
             LoginState loginState = this.loginViewModel.getState();
-            loginState.setUsername(response.getUsername());
+            // You might need to modify how you get the username, as the response object is no longer available
+            // loginState.setUsername(response.getUsername()); // This line needs adjustment
             this.loginViewModel.setState(loginState);
             this.loginViewModel.firePropertyChanged();
             this.viewManagerModel.setActiveView(this.loginViewModel.getViewName());
@@ -132,8 +133,5 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
-    }
 }
