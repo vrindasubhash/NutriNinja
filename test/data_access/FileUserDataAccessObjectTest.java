@@ -21,14 +21,14 @@ public class FileUserDataAccessObjectTest {
 
     @Before
     public void setUp() throws Exception {
-        FileUserDataAccessObject testDao = new FileUserDataAccessObject("./test/data_access/test_dao.csv", userFactory);
+        testDao = new FileUserDataAccessObject("test_dao.csv", userFactory);
         User testUser = userFactory.create("test_username", "test_password");
         testDao.saveUser(testUser);
     }
 
     @After
     public void tearDown() {
-        File testData = new File("./test/data_access/test_dao.csv");
+        File testData = new File("test_dao.csv");
         if (testData.delete()) {
             System.out.println("Deleted test_data.csv successfully.");
         } else {
@@ -42,7 +42,7 @@ public class FileUserDataAccessObjectTest {
         testDao.saveUser(newUser);
 
         // Creating a new dao to confirm user is successfully saved
-        FileUserDataAccessObject testDao2 = new FileUserDataAccessObject("./test/data_access/test_dao.csv", userFactory);
+        FileUserDataAccessObject testDao2 = new FileUserDataAccessObject("test_dao.csv", userFactory);
         User testNewUser = testDao2.getUser("new_user");
         assertEquals("new_user", testNewUser.getUsername());
         assertEquals("new_password", testNewUser.getPassword());
@@ -61,7 +61,7 @@ public class FileUserDataAccessObjectTest {
         testDao.saveUserPreferences("test_username", userPreferences);
 
         // Creating a new dao to confirm user preference is successfully saved
-        FileUserDataAccessObject testDao2 = new FileUserDataAccessObject("./test/data_access/test_dao.csv", userFactory);
+        FileUserDataAccessObject testDao2 = new FileUserDataAccessObject("test_dao.csv", userFactory);
         UserPreferences newPreferences = testDao2.getUser("test_username").getUserPreferences();
 
         assertEquals(newHealthPref, newPreferences.getHealthPreferences());
