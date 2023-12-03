@@ -7,9 +7,7 @@ import interface_adapter.generate_meal.GenerateMealViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.save_preferences.SavePreferencesViewModel;
 import interface_adapter.signup.SignupViewModel;
-import view.LoginView;
-import view.SignupView;
-import view.ViewManager;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +34,7 @@ public class Main {
         // Initiating data access object
         FileUserDataAccessObject dao;
         try {
-            dao = new FileUserDataAccessObject("./app/users.csv", new CommonUserFactory());
+            dao = new FileUserDataAccessObject("users.csv", new CommonUserFactory());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -48,7 +46,11 @@ public class Main {
         LoginView loginView = LoginViewFactory.create(viewManagerModel, loginViewModel, savePreferencesViewModel, dao);
         views.add(loginView, loginView.viewName);
 
+        PreferencesView preferencesView = PreferencesViewFactory.create(viewManagerModel, savePreferencesViewModel, generateMealViewModel, dao);
+        views.add(preferencesView, preferencesView.viewName);
 
+        GenerateMealView generateMealView = MealViewFactory.create(viewManagerModel, generateMealViewModel, savePreferencesViewModel, dao);
+        views.add(generateMealView, generateMealView.viewName);
 
         viewManagerModel.setActiveView(signupView.viewName);
         viewManagerModel.firePropertyChanged();
