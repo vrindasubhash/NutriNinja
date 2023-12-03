@@ -166,7 +166,8 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                                     currentState.getNutrientRange().getProteinRange().getLowerBound(),
                                     currentState.getNutrientRange().getProteinRange().getUpperBound(),
                                     currentState.getNutrientRange().getFatRange().getLowerBound(),
-                                    currentState.getNutrientRange().getFatRange().getUpperBound());
+                                    currentState.getNutrientRange().getFatRange().getUpperBound()
+                            );
 
                             savePreferencesController.execute(
                                     currentState.getNutrientRange().getCalorieRange(),
@@ -175,7 +176,8 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                                     currentState.getNutrientRange().getCarbRange(),
                                     currentState.getHealthPreferences(),
                                     currentState.getDishType(),
-                                    currentState.getUsername());
+                                    currentState.getUsername()
+                            );
                         }
                     }
                 }
