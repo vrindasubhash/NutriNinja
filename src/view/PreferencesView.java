@@ -1,6 +1,7 @@
 package view;
 
 import interface_adapter.generate_meal.GenerateMealController;
+import interface_adapter.generate_meal.GenerateMealViewModel;
 import interface_adapter.generate_random_meal.GenerateRandomMealController;
 import interface_adapter.save_preferences.SavePreferencesController;
 import interface_adapter.save_preferences.SavePreferencesState;
@@ -108,19 +109,24 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
     private final SavePreferencesController savePreferencesController;
     private final GenerateMealController generateMealController;
     private final GenerateRandomMealController generateRandomMealController;
-
+    private final SavePreferencesViewModel savePreferencesViewModel;
+    private final GenerateMealViewModel generateMealViewModel;
 
     /**
      * A window with a title and a JButton.
      */
-    public PreferencesView(SavePreferencesViewModel savePreferencesViewModel,
-                           SavePreferencesController savePreferencesController,
-                           GenerateMealController generateMealController,
-                           GenerateRandomMealController generateRandomMealController) {
+    public PreferencesView(GenerateMealViewModel generateMealViewModel_,
+                           SavePreferencesViewModel savePreferencesViewModel_,
+                           SavePreferencesController savePreferencesController_,
+                           GenerateMealController generateMealController_,
+                           GenerateRandomMealController generateRandomMealController_) {
+
+        this.savePreferencesController = savePreferencesController_;
+        this.generateMealController = generateMealController_;
+        this.generateRandomMealController = generateRandomMealController_;
+        this.savePreferencesViewModel = savePreferencesViewModel_;
+        this.generateMealViewModel = generateMealViewModel_;
         savePreferencesViewModel.addPropertyChangeListener(this);
-        this.savePreferencesController = savePreferencesController;
-        this.generateMealController = generateMealController;
-        this.generateRandomMealController = generateRandomMealController;
 
         JLabel title = new JLabel("Enter Preferences");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -149,7 +155,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                                     currentState.getDishType(),
                                     currentState.getUsername()
                             );
-                            successLabel.setText("Preferences Saved!");
+                            JOptionPane.showMessageDialog(PreferencesView.this, "Preferences Saved!");
                         }
                     }
                 }
@@ -161,20 +167,6 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                         if (evt.getSource().equals(generateMeal)) {
                             SavePreferencesState currentState = savePreferencesViewModel.getState();
 
-                            generateMealController.execute(
-                                    currentState.getHealthPreferences(),
-                                    currentState.getMealType(),
-                                    currentState.getDishType(),
-                                    currentState.getNutrientRange().getCalorieRange().getLowerBound(),
-                                    currentState.getNutrientRange().getCalorieRange().getUpperBound(),
-                                    currentState.getNutrientRange().getCarbRange().getLowerBound(),
-                                    currentState.getNutrientRange().getCarbRange().getUpperBound(),
-                                    currentState.getNutrientRange().getProteinRange().getLowerBound(),
-                                    currentState.getNutrientRange().getProteinRange().getUpperBound(),
-                                    currentState.getNutrientRange().getFatRange().getLowerBound(),
-                                    currentState.getNutrientRange().getFatRange().getUpperBound()
-                            );
-
                             savePreferencesController.execute(
                                     currentState.getNutrientRange().getCalorieRange(),
                                     currentState.getNutrientRange().getFatRange(),
@@ -184,6 +176,26 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                                     currentState.getDishType(),
                                     currentState.getUsername()
                             );
+
+                                generateMealController.execute(
+                                        currentState.getHealthPreferences(),
+                                        currentState.getMealType(),
+                                        currentState.getDishType(),
+                                        currentState.getNutrientRange().getCalorieRange().getLowerBound(),
+                                        currentState.getNutrientRange().getCalorieRange().getUpperBound(),
+                                        currentState.getNutrientRange().getCarbRange().getLowerBound(),
+                                        currentState.getNutrientRange().getCarbRange().getUpperBound(),
+                                        currentState.getNutrientRange().getProteinRange().getLowerBound(),
+                                        currentState.getNutrientRange().getProteinRange().getUpperBound(),
+                                        currentState.getNutrientRange().getFatRange().getLowerBound(),
+                                        currentState.getNutrientRange().getFatRange().getUpperBound()
+                                );
+                            if (generateMealViewModel.getState().getAPIError() != null){
+                                JOptionPane.showMessageDialog(PreferencesView.this, generateMealViewModel.getState().getAPIError());
+                            }
+
+
+
                         }
                     }
                 }
