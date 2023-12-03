@@ -32,11 +32,11 @@ public class GenerateMealPresenter implements GenerateMealOutputBoundary {
         generateMealState.setServings(outputData.getMeals()[index].getRecipe().getServings());
 
 
-        generateMealViewModel.setState(generateMealViewModel.getState());
-        generateMealViewModel.firePropertyChanged();
+        this.generateMealViewModel.setState(generateMealState);
+        this.generateMealViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(generateMealViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
+        this.viewManagerModel.setActiveView(generateMealViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
 
     }
 
