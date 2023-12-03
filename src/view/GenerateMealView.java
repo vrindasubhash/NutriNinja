@@ -30,8 +30,7 @@ import java.util.List;
 
 public class GenerateMealView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public static String viewName = "Generate Meal";
-
+    public final String viewName = "Generate Meal";
 
     public final GenerateMealViewModel generateMealViewModel;
     public final GenerateMealController generateMealController;

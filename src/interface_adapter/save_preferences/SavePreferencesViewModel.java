@@ -18,8 +18,8 @@ public class SavePreferencesViewModel extends ViewModel {
 
     private static SavePreferencesState state = new SavePreferencesState();
 
-    public SavePreferencesViewModel(String viewName) {
-        super(viewName);
+    public SavePreferencesViewModel() {
+        super("Preferences");
     }
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     public void setState(SavePreferencesState state) {
