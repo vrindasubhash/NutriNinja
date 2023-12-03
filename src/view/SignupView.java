@@ -1,9 +1,12 @@
 package view;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.login.LoginState;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+import use_case.signup.SignupOutputData;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,11 +33,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JButton alreadyHaveAccount = new JButton("Already have an account");
 
     private final ViewManagerModel viewManagerModel;
+    private LoginViewModel loginViewModel;
 
-    public SignupView(SignupController controller, final SignupViewModel signupViewModel, ViewManagerModel viewManagerModel) {
+    public SignupView(SignupController controller, final SignupViewModel signupViewModel, ViewManagerModel viewManagerModel, LoginViewModel loginViewModel) {
         this.signupController = controller;
         this.signupViewModel = signupViewModel;
         this.viewManagerModel = viewManagerModel;
+        this.loginViewModel = loginViewModel;
         signupViewModel.addPropertyChangeListener(this);
         LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel("Username"), this.usernameInputField);
         LabelTextPanel passwordInfo = new LabelTextPanel(new JLabel("Password"), this.passwordInputField);
@@ -102,16 +107,21 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.add(buttons);
     }
 
+    @Override
     public void actionPerformed(ActionEvent evt) {
-
         if (evt.getSource() == this.signUp) {
             // Sign up logic
             SignupState currentState = signupViewModel.getState();
             this.signupController.execute(currentState.getUsername(), currentState.getPassword(), currentState.getRepeatPassword());
         } else if (evt.getSource() == this.alreadyHaveAccount) {
             // Logic to switch to the login view
-            viewManagerModel.setActiveView("LoginView");
-            viewManagerModel.firePropertyChanged();
+            LoginState loginState = this.loginViewModel.getState();
+            // You might need to modify how you get the username, as the response object is no longer available
+            // loginState.setUsername(response.getUsername()); // This line needs adjustment
+            this.loginViewModel.setState(loginState);
+            this.loginViewModel.firePropertyChanged();
+            this.viewManagerModel.setActiveView(this.loginViewModel.getViewName());
+            this.viewManagerModel.firePropertyChanged();
         }
     }
 
@@ -122,4 +132,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         }
 
     }
+
+
 }
