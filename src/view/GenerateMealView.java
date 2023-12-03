@@ -132,7 +132,7 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
 
         ingredientsFormatted.setFont(f1);
         ingredientsPanel.add(ingredientsFormatted);
-
+        ingredientsPanel.setPreferredSize(new Dimension(500, 200));
 
 
         JPanel recipeSourcePanel = new JPanel();
@@ -217,6 +217,7 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
 
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setPreferredSize(new Dimension(1920,1080));
         this.add(title);
         this.add(mealSuggestedPanel);
         this.add(picturePanel);
@@ -225,6 +226,7 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
         this.add(recipeSourcePanel);
         this.add(recipeLinkPanel);
         this.add(buttonsPanel);
+
 
     }
 
@@ -252,10 +254,10 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
             pictureLabel.setText("No Image Available");
         }
         servings.setText(String.valueOf(state.getServings()));
-        calories.setText(String.valueOf(Math.round(state.getMealCalories() / state.getServings())));
-        protein.setText(String.valueOf(Math.round(state.getMealProtein() / state.getServings())));
-        carbs.setText(String.valueOf(Math.round(state.getMealCarbs() / state.getServings())));
-        fat.setText(String.valueOf(Math.round(state.getMealFat() / state.getServings())));
+        calories.setText(Math.round(state.getMealCalories() / state.getServings()) + "kcal");
+        protein.setText(Math.round(state.getMealProtein() / state.getServings()) + "g");
+        carbs.setText(Math.round(state.getMealCarbs() / state.getServings()) + "g");
+        fat.setText(Math.round(state.getMealFat() / state.getServings()) + "g");
 
         ingredients.setText(state.getIngredientsLabel());
         if (!ingredients.getText().isEmpty()){

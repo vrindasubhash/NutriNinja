@@ -43,8 +43,6 @@ public class GenerateMealViewModel extends ViewModel {
         this.state = state;
     }
 
-    public String mealSuggested = state.getMealName();
-
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 

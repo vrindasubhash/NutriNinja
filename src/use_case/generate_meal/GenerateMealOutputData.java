@@ -2,8 +2,13 @@ package use_case.generate_meal;
 
 public class GenerateMealOutputData {
 
+    public Object getTo() {
+        return to;
+    }
+
     private Object from;
     private Object to;
+
     private Object count;
     private Object _links;
 
