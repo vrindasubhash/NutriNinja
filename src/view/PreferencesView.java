@@ -13,6 +13,8 @@ import use_case.save_preferences.SavePreferencesInputBoundary;
 import use_case.save_preferences.SavePreferencesInputData;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -402,6 +404,17 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
     }
+    private int[] get_indices(List<String> selected_preferences, String[] options) {
+        List<Integer> res = new ArrayList<>();
+
+        for (int i = 0; i < options.length; i++) {
+            if (selected_preferences.contains(options[i])) {
+                res.add(i);
+            }
+        }
+
+        return res.stream().mapToInt(Integer::intValue).toArray();
+    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
@@ -416,7 +429,9 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
             maximumProteinInputField.setText(state.getNutrientRange().getProteinRange().getUpperBound().toString());
             minimumCarbInputField.setText(state.getNutrientRange().getCarbRange().getLowerBound().toString());
             maximumCarbInputField.setText(state.getNutrientRange().getCarbRange().getUpperBound().toString());
-            //healthPreferencesInputField.setCellRenderer(state.getHealthPreferences());
+            healthPreferencesInputField.setSelectedIndices(get_indices(state.getHealthPreferences(), healthPreferencesOptions));
+            dishTypeInputField.setSelectedIndices(get_indices(state.getDishType(), dishTypeOptions));
+            mealTypeInputField.setSelectedIndices(get_indices(state.getMealType(), mealTypeOptions));
         }
 
     }
