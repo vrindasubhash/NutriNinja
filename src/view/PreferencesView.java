@@ -14,10 +14,7 @@ import use_case.save_preferences.SavePreferencesInputData;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -338,57 +335,30 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
             }
         });
 
-
-
-
-        healthPreferencesInputField.addKeyListener(new KeyListener() {
+        healthPreferencesInputField.addMouseListener(new MouseAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 SavePreferencesState currentState = savePreferencesViewModel.getState();
                 currentState.setHealthPreferences(healthPreferencesInputField.getSelectedValuesList());
                 savePreferencesViewModel.setState(currentState);
             }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
         });
 
-        dishTypeInputField.addKeyListener(new KeyListener() {
+        dishTypeInputField.addMouseListener(new MouseAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 SavePreferencesState currentState = savePreferencesViewModel.getState();
                 currentState.setDishType(dishTypeInputField.getSelectedValuesList());
                 savePreferencesViewModel.setState(currentState);
             }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
         });
 
-        mealTypeInputField.addKeyListener(new KeyListener() {
+        mealTypeInputField.addMouseListener(new MouseAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 SavePreferencesState currentState = savePreferencesViewModel.getState();
                 currentState.setMealType(mealTypeInputField.getSelectedValuesList());
                 savePreferencesViewModel.setState(currentState);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
             }
         });
 
