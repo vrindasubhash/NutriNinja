@@ -149,7 +149,8 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
                                     currentState.getDishType(),
                                     currentState.getUsername()
                             );
-                            JOptionPane.showMessageDialog(PreferencesView.this, "Preferences Saved!");
+                            //JOptionPane.showMessageDialog(PreferencesView.this, "Preferences Saved!");
+                            successLabel.setText("Preferences Saved!");
                             successLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
                         }
                     }
@@ -370,7 +371,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
         });
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+        this.setPreferredSize(new Dimension(1020,1080));
         this.add(usernameInfo);
         this.add(title);
 

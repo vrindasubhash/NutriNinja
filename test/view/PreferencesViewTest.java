@@ -97,27 +97,27 @@ public class PreferencesViewTest {
     public void testGenerateMealButton(){
         user.setUserPreferences(new UserPreferences(new NutrientRange(new Range<>(0, 500), new Range<>(0, 500), new Range<>(0, 500), new Range<>(0, 500)), new ArrayList<>(), new ArrayList<>()));
         savePreferencesViewModel.getState().setUsername("user");
-        savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().setLowerBound(100);
-        savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().setUpperBound(200);
-        savePreferencesViewModel.getState().getNutrientRange().getFatRange().setLowerBound(100);
+        savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().setLowerBound(0);
+        savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().setUpperBound(2000);
+        savePreferencesViewModel.getState().getNutrientRange().getFatRange().setLowerBound(0);
         savePreferencesViewModel.getState().getNutrientRange().getFatRange().setUpperBound(200);
-        savePreferencesViewModel.getState().getNutrientRange().getProteinRange().setLowerBound(100);
+        savePreferencesViewModel.getState().getNutrientRange().getProteinRange().setLowerBound(0);
         savePreferencesViewModel.getState().getNutrientRange().getProteinRange().setUpperBound(200);
-        savePreferencesViewModel.getState().getNutrientRange().getCarbRange().setLowerBound(100);
-        savePreferencesViewModel.getState().getNutrientRange().getCarbRange().setUpperBound(200);
+        savePreferencesViewModel.getState().getNutrientRange().getCarbRange().setLowerBound(0);
+        savePreferencesViewModel.getState().getNutrientRange().getCarbRange().setUpperBound(500);
         savePreferencesViewModel.getState().setHealthPreferences(new ArrayList<>(Arrays.asList("kosher", "gluten-free")));
-        savePreferencesViewModel.getState().setDishType(new ArrayList<>(Arrays.asList("salad")));
-        savePreferencesViewModel.getState().setMealType(new ArrayList<>(Arrays.asList("lunch")));
+        savePreferencesViewModel.getState().setDishType(new ArrayList<>(Arrays.asList("Salad")));
+        savePreferencesViewModel.getState().setMealType(new ArrayList<>(Arrays.asList("Lunch")));
         preferencesView.generateMeal.doClick();
         assertEquals("user", savePreferencesViewModel.getState().getUsername());
-        assert 100 == savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().getLowerBound();
-        assert 200 == savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().getUpperBound();
-        assert 100 == savePreferencesViewModel.getState().getNutrientRange().getFatRange().getLowerBound();
+        assert 0 == savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().getLowerBound();
+        assert 2000 == savePreferencesViewModel.getState().getNutrientRange().getCalorieRange().getUpperBound();
+        assert 0 == savePreferencesViewModel.getState().getNutrientRange().getFatRange().getLowerBound();
         assert 200 == savePreferencesViewModel.getState().getNutrientRange().getFatRange().getUpperBound();
-        assert 100 == savePreferencesViewModel.getState().getNutrientRange().getProteinRange().getLowerBound();
+        assert 0 == savePreferencesViewModel.getState().getNutrientRange().getProteinRange().getLowerBound();
         assert 200 == savePreferencesViewModel.getState().getNutrientRange().getProteinRange().getUpperBound();
-        assert 100 == savePreferencesViewModel.getState().getNutrientRange().getCarbRange().getLowerBound();
-        assert 200 == savePreferencesViewModel.getState().getNutrientRange().getCarbRange().getUpperBound();
+        assert 0 == savePreferencesViewModel.getState().getNutrientRange().getCarbRange().getLowerBound();
+        assert 500 == savePreferencesViewModel.getState().getNutrientRange().getCarbRange().getUpperBound();
         assertEquals("Generate Meal", viewManagerModel.getActiveView());
     }
 }
