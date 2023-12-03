@@ -25,12 +25,12 @@ import javax.swing.JTextField;
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Signup";
     private final SignupViewModel signupViewModel;
-    private final JTextField usernameInputField = new JTextField(15);
-    private final JPasswordField passwordInputField = new JPasswordField(15);
-    private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
     private final SignupController signupController;
-    private final JButton signUp;
-    private final JButton alreadyHaveAccount = new JButton("Already have an account");
+    public final JTextField usernameInputField = new JTextField(15);
+    public final JPasswordField passwordInputField = new JPasswordField(15);
+    public final JPasswordField repeatPasswordInputField = new JPasswordField(15);
+    public final JButton signUp;
+    public final JButton alreadyHaveAccount = new JButton("Already have an account");
 
     private final ViewManagerModel viewManagerModel;
     private LoginViewModel loginViewModel;

@@ -97,7 +97,7 @@ public class LoginInteractorTest {
 
             @Override
             public void prepareFailView(String error) {
-                String expectedMessage = name + ": Account does not exist or password is incorrect.";
+                String expectedMessage = name + ": Account does not exist.";
                 assertEquals(expectedMessage, error);
             }
         };
