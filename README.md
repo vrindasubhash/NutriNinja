@@ -1,2 +1,8 @@
 # NutriNinja
-CSC207 Course Project
+### What is it?
+
+
+### How to run NutriNinja
+
+
+### How to use NutriNinja
