@@ -19,5 +19,4 @@ public class LoginOutputData {
     public UserPreferences getUserPreferences() {
         return this.userPreferences;
     }
-
 }
