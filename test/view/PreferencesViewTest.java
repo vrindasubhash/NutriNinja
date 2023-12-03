@@ -118,6 +118,6 @@ public class PreferencesViewTest {
         assert 200 == savePreferencesViewModel.getState().getNutrientRange().getProteinRange().getUpperBound();
         assert 100 == savePreferencesViewModel.getState().getNutrientRange().getCarbRange().getLowerBound();
         assert 200 == savePreferencesViewModel.getState().getNutrientRange().getCarbRange().getUpperBound();
-        assertEquals("Preferences", viewManagerModel.getActiveView());
+        assertEquals("Generate Meal", viewManagerModel.getActiveView());
     }
 }
