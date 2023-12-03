@@ -34,9 +34,9 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
         String mealTypeURL = convertArrtoStringURL("&mealType=", inputData.getMealType());
         String dishTypeURL = convertArrtoStringURL("&dishType=", inputData.getDishType());
         String calRangeURL = "&calories=" + inputData.getCalRange();
-        String carbRangeURL = "&nutrients%5CHOCDF=" + inputData.getCarbRange(); //Carbs
-        String proteinRangeURL = "&nutrients%5PROCNT=" + inputData.getProteinRange(); //Protein
-        String fatRangeURL = "&nutrients%5FAT=" + inputData.getFatRange(); //Fat
+        String carbRangeURL = "&nutrients%5BCHOCDF%5D=" + inputData.getCarbRange(); //Carbs
+        String proteinRangeURL = "&nutrients%5BPROCNT%5D=" + inputData.getProteinRange(); //Protein
+        String fatRangeURL = "&nutrients%5BFAT%5D=" + inputData.getFatRange(); //Fat
         String field = convertArrtoStringURL("&field=", fields);
         String random = "&random=true";
 

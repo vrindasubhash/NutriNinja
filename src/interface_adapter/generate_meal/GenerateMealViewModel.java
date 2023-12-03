@@ -1,5 +1,6 @@
 package interface_adapter.generate_meal;
 
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
@@ -12,6 +13,7 @@ public class GenerateMealViewModel extends ViewModel {
 
     //HEADERS
     public static final String MEAL_HEADER = "Meal Suggested: ";
+
     public static final String SERVINGS_HEADER = "Servings: ";
     public static final String CALORIES_HEADER = "Calories: ";
     public static final String PROTEIN_HEADER = "Protein: ";
@@ -33,12 +35,14 @@ public class GenerateMealViewModel extends ViewModel {
 
     private GenerateMealState state= new GenerateMealState();
 
+
     public GenerateMealState getState(){
         return state;
     }
     public void setState(GenerateMealState state){
         this.state = state;
     }
+
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 

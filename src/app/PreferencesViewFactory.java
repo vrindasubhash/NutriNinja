@@ -2,19 +2,11 @@ package app;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.generate_meal.GenerateMealController;
-import interface_adapter.generate_meal.GenerateMealPresenter;
 import interface_adapter.generate_meal.GenerateMealViewModel;
 import interface_adapter.generate_random_meal.GenerateRandomMealController;
-import interface_adapter.generate_random_meal.GenerateRandomMealPresenter;
 import interface_adapter.save_preferences.SavePreferencesController;
 import interface_adapter.save_preferences.SavePreferencesPresenter;
 import interface_adapter.save_preferences.SavePreferencesViewModel;
-import use_case.generate_meal.GenerateMealInputBoundary;
-import use_case.generate_meal.GenerateMealOutputBoundary;
-import use_case.generate_meal.GenerateMealUseCaseInteractor;
-import use_case.generate_meal_by_id.GenerateMealByIDInputBoundary;
-import use_case.generate_meal_by_id.GenerateMealByIDInteractor;
-import use_case.generate_meal_by_id.GenerateMealByIDOutputBoundary;
 import use_case.save_preferences.SavePreferencesDataAccessInterface;
 import use_case.save_preferences.SavePreferencesInputBoundary;
 import use_case.save_preferences.SavePreferencesInteractor;
@@ -37,7 +29,7 @@ public class PreferencesViewFactory {
             SavePreferencesController savePreferencesController = createSavePreferencesUseCase(viewManagerModel, savePreferencesViewModel,savePreferencesDataAccessObject);
             GenerateMealController generateMealController = MealViewFactory.createGenerateMealUseCase(viewManagerModel, generateMealViewModel);
             GenerateRandomMealController generateRandomMealController = MealViewFactory.createGenerateRandomMealUseCase(viewManagerModel, generateMealViewModel);
-            return new PreferencesView(savePreferencesViewModel, savePreferencesController, generateMealController, generateRandomMealController);
+            return new PreferencesView(generateMealViewModel, savePreferencesViewModel, savePreferencesController, generateMealController, generateRandomMealController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }

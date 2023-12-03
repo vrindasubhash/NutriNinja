@@ -17,6 +17,7 @@ public class Main {
     public static void main(String[] args) {
         // Setting up app
         JFrame app = new JFrame("NutriNinja");
+        app.setPreferredSize(new  Dimension(1920, 1080));
         app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);

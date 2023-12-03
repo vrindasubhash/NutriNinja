@@ -32,8 +32,8 @@ public class GenerateRandomMealPresenter implements GenerateMealByIDOutputBounda
         generateMealState.setRecipeUrl(outputData.getRecipe().getUrl());
         generateMealState.setServings(outputData.getRecipe().getServings());
 
-        this.generateMealViewModel.setState(generateMealViewModel.getState());
-        generateMealViewModel.firePropertyChanged();
+        this.generateMealViewModel.setState(generateMealState);
+        this.generateMealViewModel.firePropertyChanged();
 
 
         this.viewManagerModel.setActiveView(generateMealViewModel.getViewName());
