@@ -1,7 +1,7 @@
 # NutriNinja
 ### What is it?
 NutriNinja is an application aimed at introducing people to new foods by suggesting a meal based on user preference. 
-There is also an option to fetch a completely random meal! 
+There is also an option to generate a completely random meal! 
 
 People can create accounts, which they can login
 with later, with which they can save their preferences, for easy meal generation.
