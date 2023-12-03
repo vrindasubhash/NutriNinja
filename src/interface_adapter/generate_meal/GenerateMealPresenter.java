@@ -44,6 +44,8 @@ public class GenerateMealPresenter implements GenerateMealOutputBoundary {
     public void prepareFailView(String error) {
         GenerateMealState generateMealState = generateMealViewModel.getState();
         generateMealState.setAPIError(error);
+
+        this.generateMealViewModel.setState(generateMealViewModel.getState());
         generateMealViewModel.firePropertyChanged();
     }
 }

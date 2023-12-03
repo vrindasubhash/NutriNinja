@@ -258,9 +258,11 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
         fat.setText(String.valueOf(Math.round(state.getMealFat() / state.getServings())));
 
         ingredients.setText(state.getIngredientsLabel());
+        if (!ingredients.getText().isEmpty()){
+            String ingredientsFormat = "<html>" + ingredients.getText().replace(",", "<br/>").substring(1,ingredients.getText().length()-1 ) + "</html>";
+            ingredientsFormatted.setText(ingredientsFormat);
+        }
 
-        String ingredientsFormat = "<html>" + ingredients.getText().replace(",", "<br/>").substring(1,ingredients.getText().length()-1 ) + "</html>";
-        ingredientsFormatted.setText(ingredientsFormat);
 
         recipeSource.setText(state.getRecipeSource());
         recipeURL.setText(state.getRecipeURL());
