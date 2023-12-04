@@ -51,7 +51,7 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
 
     String[] healthPreferencesOptions = {"dairy-free", "fish-free", "gluten-free", "keto-friendly",
     "kosher", "low-sugar", "peanut-free", "pescatarian", "pork-free", "vegan", "vegetarian"};
-    String[] dishTypeOptions = {"Deserts", "Main Course", "Salad", "Sandwiches", "Side Dish", "Soup", "Starter"};
+    String[] dishTypeOptions = {"Desserts", "Main Course", "Salad", "Sandwiches", "Side Dish", "Soup", "Starter"};
     String[] mealTypeOptions = {"Breakfast", "Lunch", "Dinner", "Snack"};
 
 
