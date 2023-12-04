@@ -54,7 +54,6 @@ public class PreferencesView extends JPanel implements ActionListener, PropertyC
     String[] dishTypeOptions = {"Desserts", "Main Course", "Salad", "Sandwiches", "Side Dish", "Soup", "Starter"};
     String[] mealTypeOptions = {"Breakfast", "Lunch", "Dinner", "Snack"};
 
-
     final JList<String> healthPreferencesInputField = new JList<>(healthPreferencesOptions);
     private final JLabel healthPreferencesErrorField = new JLabel();
 
