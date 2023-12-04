@@ -47,6 +47,8 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
     public JLabel ingredientsFormatted = new JLabel();
 
 
+    public JButton regenerateButton;
+
 
     public GenerateMealView(GenerateMealViewModel generateMealViewModel_,
                             SavePreferencesViewModel savePreferencesViewModel_,
@@ -153,7 +155,7 @@ public class GenerateMealView extends JPanel implements ActionListener, Property
 
 
         JButton backButton = new JButton(GenerateMealViewModel.BACK_BUTTON_LABEL);
-        JButton regenerateButton = new JButton(GenerateMealViewModel.REGENERATE_BUTTON_LABEL);
+        regenerateButton = new JButton(GenerateMealViewModel.REGENERATE_BUTTON_LABEL);
         JButton feelingLuckyButton = new JButton(GenerateMealViewModel.FEELING_LUCKY_BUTTON_LABEL);
 
 
