@@ -42,8 +42,17 @@ public class FileUserDataAccessObject implements LoginUserDataAccessInterface,
                     // Getting user attributes from col
                     String username = col[headers.get("username")];
                     String password = col[headers.get("password")];
-                    List<String> healthPreferences = new ArrayList<>(Arrays.asList(col[headers.get("healthPreferences")].split("/")));
-                    List<String> dishType = new ArrayList<>(Arrays.asList(col[headers.get("dishType")].split("/")));
+
+                    String healthPreferencesCol = col[headers.get("healthPreferences")];
+                    String dishTypeCol = col[headers.get("dishType")];
+
+                    List<String> healthPreferences = healthPreferencesCol.isEmpty() ?
+                            new ArrayList<>() :
+                            new ArrayList<>(Arrays.asList(healthPreferencesCol.split("/")));
+                    List<String> dishType = dishTypeCol.isEmpty() ?
+                            new ArrayList<>() :
+                            new ArrayList<>(Arrays.asList(dishTypeCol.split("/")));
+
                     int[] calRange = convertStringArrToNumArr(col[headers.get("calRange")].split("-"));
                     int[] fatRange = convertStringArrToNumArr(col[headers.get("fatRange")].split("-"));
                     int[] proteinRange = convertStringArrToNumArr(col[headers.get("proteinRange")].split("-"));
