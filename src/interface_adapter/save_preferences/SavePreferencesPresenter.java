@@ -14,6 +14,11 @@ public class SavePreferencesPresenter implements SavePreferencesOutputBoundary {
         this.saveViewModel = saveViewModel;
         this.viewManagerModel = viewManagerModel;
     }
+
+    /**
+     * Receives the SavePreferenecesOutputData Updates the ViewModel
+     * @param response
+     */
     @Override
     public void prepareSuccessView(SavePreferencesOutputData response) {
         // On success, present the user with the success message
