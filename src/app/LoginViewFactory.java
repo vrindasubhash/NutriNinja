@@ -19,6 +19,14 @@ import java.io.IOException;
 public class LoginViewFactory {
     private LoginViewFactory() {}
 
+    /**
+     * Creates a LoginView
+     * @param viewManagerModel
+     * @param loginViewModel
+     * @param savePreferencesViewModel
+     * @param userDataAccessObject
+     * @return LoginView
+     */
     public static LoginView create(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
@@ -35,6 +43,15 @@ public class LoginViewFactory {
         return null;
     }
 
+    /**
+     * Creates a LoginUseCase
+     * @param viewManagerModel
+     * @param loginViewModel
+     * @param savePreferencesViewModel
+     * @param userDataAccessObject
+     * @return  A LoginController
+     * @throws IOException
+     */
     private static LoginController createLoginUseCase(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,

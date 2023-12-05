@@ -12,7 +12,11 @@ public class LoginController {
         this.loginUseCaseInteractor = loginUseCaseInteractor;
     }
 
-
+    /**
+     * Creates InputData to pass to the Use Case Interactor.
+     * @param username
+     * @param password
+     */
     public void execute(String username, String password) {
         LoginInputData loginInputData = new LoginInputData(
                 username, password);
