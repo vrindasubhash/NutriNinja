@@ -15,6 +15,10 @@ public class GenerateMealByIDInteractor implements GenerateMealByIDInputBoundary
         this.generateMealByIDPresenter = generateMealByIDPresenter;
     }
 
+    /**
+     * This method calls the API and gets the data from the API, and calls the outputBoundary to prepare the view
+     * @param inputData: the input data obtained from the user.
+     */
     @Override
     public void execute(GenerateMealByIDInputData inputData) {
         String ID = "8da598eb";

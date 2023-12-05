@@ -13,6 +13,9 @@ public class GenerateRandomMealController {
         this.generateMealByIDInteractor = generateMealUseCaseInteractor;
     }
 
+    /**
+     * This method picks a random meal from the list of meals and sends it to the use case by calling interactor.execute()
+     */
     public void execute(){
         // Generate a random number between 0 and 19 inclusive
         int index = (int)(Math.random() * 20);

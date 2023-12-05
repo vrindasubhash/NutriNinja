@@ -19,6 +19,10 @@ public class GenerateMealUseCaseInteractor implements GenerateMealInputBoundary{
 
     }
 
+    /**
+     * This method calls the API and gets the data from the API, and calls the outputBoundary to prepare the view
+     * @param inputData: the input data obtained from the user.
+     */
     public void execute(GenerateMealInputData inputData) {
         String ID = "8da598eb";
         String KEY = " 9fec3b1b7ba00da5dac76ba4af6bd26e\t";
