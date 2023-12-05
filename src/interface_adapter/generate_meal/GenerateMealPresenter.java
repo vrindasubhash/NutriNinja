@@ -15,6 +15,11 @@ public class GenerateMealPresenter implements GenerateMealOutputBoundary {
         this.viewManagerModel = viewManagerModel;
         this.generateMealViewModel = generateMealViewModel;
     }
+
+    /**
+     * This method packs up the data from the use case interactor and prepares the successes state for the view model
+     * @param outputData: The output data for generate meal view, which is the meal data
+     */
     @Override
     public void prepareSuccessView(GenerateMealOutputData outputData) {
         GenerateMealState generateMealState = generateMealViewModel.getState();
@@ -41,6 +46,10 @@ public class GenerateMealPresenter implements GenerateMealOutputBoundary {
 
     }
 
+    /**
+     * This method packs up the data from the use case interactor and prepares the fail state for the view model
+     * @param error: The error message from the API call
+     */
     @Override
     public void prepareFailView(String error) {
         GenerateMealState generateMealState = generateMealViewModel.getState();
