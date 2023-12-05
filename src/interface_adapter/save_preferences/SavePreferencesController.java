@@ -11,6 +11,17 @@ public class SavePreferencesController {
     public SavePreferencesController(SavePreferencesInputBoundary saveUseCaseInteractor) {
         this.saveUseCaseInteractor = saveUseCaseInteractor;
     }
+
+    /**
+     * Passes the SavePreferencesInputData to the SavePreferencesInteractor
+     * @param calorieRange
+     * @param fatRange
+     * @param proteinRange
+     * @param carbRange
+     * @param healthPreferences
+     * @param dishType
+     * @param username
+     */
     public void execute(Range<Integer> calorieRange,
                         Range<Integer> fatRange,
                         Range<Integer> proteinRange,

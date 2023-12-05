@@ -19,6 +19,14 @@ import java.io.IOException;
 public class PreferencesViewFactory {
     private PreferencesViewFactory() {}
 
+    /**
+     * Creates PreferencesView
+     * @param viewManagerModel
+     * @param savePreferencesViewModel
+     * @param generateMealViewModel
+     * @param savePreferencesDataAccessObject
+     * @return Preferences
+     */
     public static PreferencesView create(
             ViewManagerModel viewManagerModel,
             SavePreferencesViewModel savePreferencesViewModel,
@@ -37,6 +45,14 @@ public class PreferencesViewFactory {
         return null;
     }
 
+    /**
+     * Creates the SavePreferencesUseCase
+     * @param viewManagerModel
+     * @param savePreferencesViewModel
+     * @param savePreferencesDataAccessObject
+     * @return SavePreferencesController
+     * @throws IOException
+     */
     public static SavePreferencesController createSavePreferencesUseCase(
             ViewManagerModel viewManagerModel,
             SavePreferencesViewModel savePreferencesViewModel,

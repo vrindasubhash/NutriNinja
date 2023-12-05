@@ -13,6 +13,10 @@ public class SavePreferencesInteractor implements SavePreferencesInputBoundary {
         this.savePresenter = savePresenter;
     }
 
+    /**
+     * Saves the UserPreferences and passes it through as output data
+     * @param savePreferencesInputData
+     */
     @Override
     public void execute(SavePreferencesInputData savePreferencesInputData) {
         UserPreferences userPreferences = new UserPreferences(savePreferencesInputData.getNutrientRange(),
