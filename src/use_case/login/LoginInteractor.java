@@ -12,6 +12,10 @@ public class LoginInteractor implements LoginInputBoundary {
         this.loginPresenter = loginOutputBoundary;
     }
 
+    /**
+     * Given the InputData, uses the userDataAccessObject to prepare the output data for the presenter.
+     * @param loginInputData
+     */
     @Override
     public void execute(LoginInputData loginInputData) {
         String username = loginInputData.getUsername();

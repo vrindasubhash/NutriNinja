@@ -19,6 +19,10 @@ public class LoginPresenter implements LoginOutputBoundary {
         this.loginViewModel = loginViewModel;
     }
 
+    /**
+     * Creates the success view (save preferences) if the login was successful.
+     * @param response
+     */
     @Override
     public void prepareSuccessView(LoginOutputData response) {
         // On success, switch to the save preferences view.
@@ -34,6 +38,10 @@ public class LoginPresenter implements LoginOutputBoundary {
         this.viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     * Creates the fail view if the login fails.
+     * @param error
+     */
     @Override
     public void prepareFailView(String error) {
         loginViewModel.getState().setError(error);
